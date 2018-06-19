@@ -1,10 +1,8 @@
-
 import numpy as np
 from scipy.stats import expon
 import scr.SamplePathClasses as PathCls
 import scr.StatisticalClasses as Stat
 import Surgeries as S
-
 
 
 class Patient:
