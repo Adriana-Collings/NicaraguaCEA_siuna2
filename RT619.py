@@ -17,7 +17,7 @@ dictChances = { 'diagnosed':        [D.Diag_Cost,       D.Diag_U,               
                 'Surgeon':          [D.Surgeon_Cost,    D.Surgeon_U,            ['Die_Surg', 'Survive'],               \
                                      [D.Pr_Die, (1-D.Pr_Die)]],
 
-                'Survive':          [D.Survive_Cost,    D.Survive_U,            ['Major_Comp', 'Minor_Comp', 'No_Comp'],\
+                'Survive':          [D.Survive_Cost,    D.Survive_U,           ['Major_Comp', 'Minor_Comp', 'No_Comp'],\
                                      [D.Pr_Maj_Comp, D.Pr_Min_Comp, (1-D.Pr_Maj_Comp - D.Pr_Min_Comp)]],
 
                 'Major_Comp':       [D.Major_Comp_Cost, D.Major_Comp_U,         ['Die_Comp', 'Survive_Comp'],          \
@@ -51,3 +51,7 @@ dictTerminals = {   'Die_Surg':              [D.Die_Surg_Cost,                  
                     'No_S_Maj_Comp_Die':     [D.No_S_Maj_Comp_Die_Cost,          D.No_S_Maj_Comp_Die_U],
                     'No_S_Maj_Comp_Survive': [D.No_S_Maj_Comp_Survive_Cost,      D.No_S_Maj_Comp_Survive_U],
                  }
+#giving it something new to commit
+
+
+d1=DT.DecisionNode
