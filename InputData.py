@@ -23,6 +23,8 @@ No_S_No_Comp_Cost=0         #   cost of no  complications from a surgical proced
 No_S_Maj_Comp_Cost=0        #   cost of major complications from a non-surgical procedure
 No_S_Maj_Comp_Die_Cost=0    #   cost to die from major complications of a non-surgical procedure (0 likely)
 No_S_Maj_Comp_Survive_Cost=0    # cost to survive major complications from a non-surgical procedure (0 likely)
+No_Access_Die_Cost=0        #cost to die with no access to healthcare
+No_Access_Survive_Cost=0    #cost to survive with no access to healthcare
 
 No_Access_Cost=0            #   cost of no access
 
@@ -54,6 +56,9 @@ No_S_Maj_Comp_Survive_U=1   #utility of surviving complications from a non-surgi
 
 
 No_Access_U=0               #utility of no access
+No_Access_Die_U=0           #utility of dying with no access
+No_Access_Suvive_U=1           #utility of surviving with no access
+
 ####################################################################################################################
 #Probabilities
 ###################################################################################################################

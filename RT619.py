@@ -3,12 +3,12 @@ import InputData as D
 
 # dictionary for decision nodes
 #               // key: cost, utility, [future nodes]
-dictDecisions = {'d1': [0,     0,       ['doesnt_seek_care', 'diagnosed']]};
+dictDecisions = {'d1': [0,     0,       ['doesnt_seek_care', 'Diagnosed']]};
 
 #           // key:                 cost,   utility,    [future nodes],                     [probabilities]
 
 
-dictChances = { 'diagnosed':        [D.Diag_Cost,       D.Diag_U,               ['Access', 'NoAccess'],                \
+dictChances = { 'Diagnosed':        [D.Diag_Cost,       D.Diag_U,               ['Access', 'NoAccess'],                \
                                      [D.Pr_Access, (1-D.Pr_Access)]],
 
                 'Access':           [D.Access_Cost,     D.Access_U,             ['Surgeon', 'NonSurgeon'],             \
@@ -50,8 +50,58 @@ dictTerminals = {   'Die_Surg':              [D.Die_Surg_Cost,                  
                     'No_S_No_Comp':          [D.No_S_No_Comp_Cost,               D.No_S_No_Comp_U],
                     'No_S_Maj_Comp_Die':     [D.No_S_Maj_Comp_Die_Cost,          D.No_S_Maj_Comp_Die_U],
                     'No_S_Maj_Comp_Survive': [D.No_S_Maj_Comp_Survive_Cost,      D.No_S_Maj_Comp_Survive_U],
+                    'No_A_Die':              [D.No_Access_Die_Cost,              D.No_Access_Die_U],
+                    'No_A_Survive':          [D.No_Access_Survive_Cost,          D.No_Access_Suvive_U]
                  }
-#giving it something new to commit
+
+tree=DT.DecisionNode('d1', cum_prob=1, dict_decisions=dictDecisions, dict_chances=dictChances, dict_terminals=dictTerminals)
+
+##CREATING CHANCE NODES
+diagnosed=DT.ChanceNode('Diagnosed', cum_prob=1, dict_chances=dictChances, dict_terminals=dictTerminals)
+access=DT.ChanceNode('Access', cum_prob=D.Pr_Access, dict_chances=dictChances, dict_terminals=dictTerminals)
+surgeon=DT.ChanceNode('Surgeon', cum_prob=(D.Pr_Access*D.Pr_Surg), dict_chances=dictChances, dict_terminals=dictTerminals)
+survive=DT.ChanceNode('Survive', cum_prob=(D.Pr_Access*D.Pr_Surg*(1-D.Pr_Die)), dict_chances=dictChances, \
+    dict_terminals=dictTerminals)
+major_complication=DT.ChanceNode('Major_Comp', cum_prob=D.Pr_Access*D.Pr_Surg*(1-D.Pr_Die)*D.Pr_Maj_Comp, \
+    dict_chances=dictChances, dict_terminals=dictTerminals)
+non_surgeon=DT.ChanceNode('NonSurgeon', cum_prob=(D.Pr_Access*(1-D.Pr_Surg)), dict_chances=dictChances, \
+    dict_terminals=dictTerminals)
+non_surg_survive=DT.ChanceNode('No_Surg_Survive', cum_prob=(D.Pr_Access*(1-D.Pr_Surg)*(1-D.Pr_NoSurg_Die)), \
+    dict_chances=dictChances, dict_terminals=dictTerminals)
+non_surg_maj_comp=DT.ChanceNode('No_S_Major_Comp', cum_prob=(D.Pr_Access*(1-D.Pr_Surg)*(1-D.Pr_NoSurg_Die)*D.Pr_NoS_Maj_Comp),\
+    dict_chances=dictChances, dict_terminals=dictTerminals)
+no_access=DT.ChanceNode('NoAccess', cum_prob=(1-D.Pr_Access), dict_chances=dictChances, dict_terminals=dictTerminals)
 
 
-d1=DT.DecisionNode
+#CREATING TERMINAL NODES
+die_surg=DT.TerminalNode(name='Die_Surg', cum_prob=(D.Pr_Access*D.Pr_Surg*D.Pr_Die), dict_terminals=dictTerminals)
+minor_comp=DT.TerminalNode(name='Minor_Comp', cum_prob=(D.Pr_Access*D.Pr_Surg*(1-D.Pr_Die)*D.Pr_Min_Comp),\
+    dict_terminals=dictTerminals)
+no_comp=DT.TerminalNode(name='No_Comp', cum_prob=(D.Pr_Access*D.Pr_Surg*(1-D.Pr_Die)*(1-D.Pr_Maj_Comp-D.Pr_Min_Comp)),\
+    dict_terminals=dictTerminals)
+die_comp=DT.TerminalNode(name='Die_Comp', cum_prob=(D.Pr_Access*D.Pr_Surg*(1-D.Pr_Die)*D.Pr_Maj_Comp*D.Pr_Die_Comp),\
+    dict_terminals=dictTerminals)
+survive_comp=DT.TerminalNode(name='Survive_Comp', cum_prob=(D.Pr_Access*D.Pr_Surg*(1-D.Pr_Die)*D.Pr_Maj_Comp*(1-D.Pr_Die_Comp)),\
+    dict_terminals=dictTerminals)
+no_surg_die=DT.TerminalNode('No_Surg_Die', cum_prob=(D.Pr_Access*(1-D.Pr_Surg)*D.Pr_NoSurg_Die),\
+    dict_terminals=dictTerminals)
+no_surg_min_comp=DT.TerminalNode('No_S_Minor_Comp', cum_prob=(D.Pr_Access*(1-D.Pr_Surg)*(1-D.Pr_NoSurg_Die)*D.Pr_NoS_Min_Comp),\
+    dict_terminals=dictTerminals)
+no_surg_no_comp=DT.TerminalNode('No_S_No_Comp', cum_prob=(D.Pr_Access*(1-D.Pr_Surg)*(1-D.Pr_NoSurg_Die)\
+    *(1-D.Pr_NoS_Min_Comp-D.Pr_NoS_Maj_Comp)), dict_terminals=dictTerminals)
+no_surg_maj_comp_die=DT.TerminalNode('No_S_Maj_Comp_Die', cum_prob=(D.Pr_Access)*(1-D.Pr_Surg)*(1-D.Pr_NoSurg_Die)\
+    *D.Pr_NoS_Maj_Comp*D.Pr_No_S_Maj_Comp_Die, dict_terminals=dictTerminals)
+no_surg_maj_comp_surv=DT.TerminalNode('No_S_Maj_Comp_Survive', cum_prob=(D.Pr_Access*(1-D.Pr_Surg)*(1-D.Pr_NoSurg_Die)\
+    *D.Pr_NoS_Maj_Comp*(1-D.Pr_No_S_Maj_Comp_Die)), dict_terminals=dictTerminals)
+no_access_die=DT.TerminalNode('No_A_Die', cum_prob=((1-D.Pr_Access)*D.Pr_No_A_Die), dict_terminals=dictTerminals)
+no_access_survive=DT.TerminalNode('No_A_Survive', cum_prob=((1-D.Pr_Access)*(1-D.Pr_No_A_Die)), dict_terminals=dictTerminals)
+
+
+##CHECK ALL NODES to verify all have been created and all lead to the right nodes
+
+
+print(diagnosed.get_terminal_prob())
+print(tree.get_cost_utility())
+print(tree.get_terminal_prob())
+
+DT.graph_outcomes(tree)
