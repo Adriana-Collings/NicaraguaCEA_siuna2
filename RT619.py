@@ -51,7 +51,7 @@ dictTerminals = {   'Die_Surg':              [D.Die_Surg_Cost,                  
                     'No_S_Maj_Comp_Die':     [D.No_S_Maj_Comp_Die_Cost,          D.No_S_Maj_Comp_Die_U],
                     'No_S_Maj_Comp_Survive': [D.No_S_Maj_Comp_Survive_Cost,      D.No_S_Maj_Comp_Survive_U],
                     'No_A_Die':              [D.No_Access_Die_Cost,              D.No_Access_Die_U],
-                    'No_A_Survive':          [D.No_Access_Survive_Cost,          D.No_Access_Suvive_U]
+                    'No_A_Survive':          [D.No_Access_Survive_Cost,          D.No_Access_Survive_U]
                  }
 
 tree=DT.DecisionNode('d1', cum_prob=1, dict_decisions=dictDecisions, dict_chances=dictChances, dict_terminals=dictTerminals)
@@ -96,6 +96,10 @@ no_surg_maj_comp_surv=DT.TerminalNode('No_S_Maj_Comp_Survive', cum_prob=(D.Pr_Ac
 no_access_die=DT.TerminalNode('No_A_Die', cum_prob=((1-D.Pr_Access)*D.Pr_No_A_Die), dict_terminals=dictTerminals)
 no_access_survive=DT.TerminalNode('No_A_Survive', cum_prob=((1-D.Pr_Access)*(1-D.Pr_No_A_Die)), dict_terminals=dictTerminals)
 
+DT.create_future_nodes(['diagnosed', 'access', 'surgeon', 'survive', 'major_complication', 'non_surgeon', 'non_surg_survive',\
+    'non_surg_maj_comp', 'no_access', 'die_surg', 'minor_comp', 'no_comp', 'die_comp', 'survive_comp', 'no_surg_die'\
+    'no_surg_min_comp', 'no_surg_no_comp', 'no_surg_maj_comp_die', 'no_surg_mj_comp_surv', 'no_access_die',\
+    'no_access_survive'], dict_terminals=dictTerminals, dict_chances=dictChances)
 
 ##CHECK ALL NODES to verify all have been created and all lead to the right nodes
 
