@@ -105,3 +105,6 @@ tree=DT.DecisionNode('d1', dict_decisions=dictDecisions, dict_chances=dictChance
 print(tree.get_cost_utility())
 print(tree.get_terminal_prob())
 
+
+# i dont understand github
+
