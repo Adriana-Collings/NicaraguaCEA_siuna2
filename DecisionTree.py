@@ -44,7 +44,7 @@ class Patient:
         t = 0
 
         while self._healthState == S.HealthState.SURGERY and t < n_of_days:  # need n of days?
-            if self._rnd.sample() < (1 - S.SURGERY_PROB):
+            if self._rnd.random_sample() < (1 - S.SURGERY_PROB):
                 self._countNoSurgery += 1
             else:
                 self._countSurgeries += 1
