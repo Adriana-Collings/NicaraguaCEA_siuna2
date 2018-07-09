@@ -64,7 +64,6 @@ PR_OS_S_Die = .5
 PR_OS_S_S_Comp = .5
 PR_OS_S_S_C_Major = .5
 PR_OS_S_S_C_Major_Die = .5
-#PR_OpSmileAccess_NoSurgeryDie = .9
 PR_OS_A_NoSurgery_Die = .5
 PR_OS_Managua = .5
 PR_OS_Managua_Die = .5
