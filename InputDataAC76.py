@@ -58,32 +58,33 @@ NoOS_NA_Disease_U = 4
 PR_OpSmile = 0.5
 PR_NoOpSmile = 0.5
 
-PR_OS_Access = .8
-PR_OpSmileAccessSurgery = .9
-PR_OS_S_Die = .2
-PR_OS_S_S_Comp = .4
-PR_OS_S_S_C_Major = .2
-PR_OS_S_S_C_Major_Die = .6
-PR_OpSmileAccess_NoSurgeryDie = .9
-PR_OS_Managua = .1
-PR_OS_Managua_Die = .4
+PR_OS_Access = .5
+PR_OS_A_Surgery = .5
+PR_OS_S_Die = .5
+PR_OS_S_S_Comp = .5
+PR_OS_S_S_C_Major = .5
+PR_OS_S_S_C_Major_Die = .5
+#PR_OpSmileAccess_NoSurgeryDie = .9
+PR_OS_A_NoSurgery_Die = .5
+PR_OS_Managua = .5
+PR_OS_Managua_Die = .5
 PR_OS_M_S_Comp = .5
-PR_OS_M_S_C_Major = .1
-PR_OS_M_S_C_Major_Die = .01
-PR_OS_Disease_Die = .1
-PR_NoOpSmile_Access = .9
-PR_NoOpSmile_Surgery = .3
-PR_NoOS_Surgery_Die = .7
-PR_NoOS_S_S_Comp = .9
-PR_NoOS_S_S_C_Major = .9
-PR_NoOS_S_S_C_M_Die = .9
-PR_NoOS_NS_Die = .9
-PR_NoOS_NA_Managua = .9
-Pr_NoOS_NA_M_Die = .4
+PR_OS_M_S_C_Major = .5
+PR_OS_M_S_C_Major_Die = .5
+PR_OS_Disease_Die = .5
+PR_NoOpSmile_Access = .5
+PR_NoOpSmile_Surgery = .5
+PR_NoOS_Surgery_Die = .5
+PR_NoOS_S_S_Comp = .5
+PR_NoOS_S_S_C_Major = .5
+PR_NoOS_S_S_C_M_Die = .5
+PR_NoOS_NS_Die = .5
+PR_NoOS_NA_Managua = .5
+Pr_NoOS_NA_M_Die = .5
 Pr_NoOS_NA_M_Comp = .5
-PR_NoOS_M_Comp_Major = .1
-PR_NoOS_NA_M_C_M_Die = .01
-PR_NoOS_NA_D_Die = .1
+PR_NoOS_M_Comp_Major = .5
+PR_NoOS_NA_M_C_M_Die = .5
+PR_NoOS_NA_D_Die = .5
 
 ########################################################################################################################
 ########################################################################################################################
@@ -116,6 +117,9 @@ NoOS_NA_M_C_M_Die_C = 100
 NoOS_NA_M_C_M_Survive_C = 100
 NoOS_NS_Die_C = 100
 NoOS_NS_Survive_C = 100
+NoOS_NA_D_Die_C = 10
+NoOS_NA_D_Survive_C = 50
+
 
 # utilities
 OS_S_Die_U = 10
@@ -144,6 +148,8 @@ NoOS_NA_M_C_M_Die_U = 10
 NoOS_NA_M_C_M_Survive_U = 10
 NoOS_NS_Die_U = 10
 NoOS_NS_Survive_U = 10
+NoOS_NA_D_Die_U = 10
+NoOS_NA_D_Survive_U = 10
 
 
 

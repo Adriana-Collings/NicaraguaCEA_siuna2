@@ -98,8 +98,8 @@ no_access_die=DT.TerminalNode('No_A_Die', cum_prob=((1-D.Pr_Access)*D.Pr_No_A_Di
 no_access_survive=DT.TerminalNode('No_A_Survive', cum_prob=((1-D.Pr_Access)*(1-D.Pr_No_A_Die)), dict_terminals=dictTerminals)
 
 #print(diagnosed.get_terminal_prob())
-#print(tree.get_cost_utility())
-#print(tree.get_terminal_prob())
+print(tree.get_cost_utility())
+print(tree.get_terminal_prob())
 
 #DT.graph_outcomes(tree)
 
