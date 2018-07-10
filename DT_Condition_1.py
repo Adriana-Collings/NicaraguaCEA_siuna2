@@ -1,5 +1,5 @@
 import scr.DecisionTree as DT
-import InputDataAC76 as D
+import InputData_Condition1 as D
 
 # dictionary for decision nodes
 #               // key: cost, utility, [future nodes]
@@ -94,14 +94,11 @@ dictTerminal = {
     'NoOS_OS_Disease_Survive': [D.OS_Disease_Survive_C, D.OS_Disease_Survive_U]
 }
 
-
-
 # CREATING DECISION NODE
-tree=DT.DecisionNode('d1', dict_decisions=dictDecisions, dict_chances=dictChances, dict_terminals=dictTerminal)
+#tree=DT.DecisionNode('d1', dict_decisions=dictDecisions, cum_prob=1, dict_chances=dictChances, dict_terminals=dictTerminal)
 
-
-print(tree.get_cost_utility())
-print(tree.get_terminal_prob())
+#print(tree.get_cost_utility())
+#print(tree.get_terminal_prob())
 
 
 
