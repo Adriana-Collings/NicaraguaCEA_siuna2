@@ -55,8 +55,8 @@ NoOS_NA_M_C_Major_U = 1
 NoOS_NA_Disease_U = 4
 
 # probabilities
-PR_OpSmile = 0.5
-PR_NoOpSmile = 0.5
+PR_OpSmile = .5
+PR_NoOpSmile = .5
 
 PR_OS_Access = .5
 PR_OS_A_Surgery = .5
