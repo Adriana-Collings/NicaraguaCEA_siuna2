@@ -1,4 +1,4 @@
-import InputDataAC76 as D
+import InputData_Condition1 as D
 
 # DALY calculation
 YLD_major_comp = 5

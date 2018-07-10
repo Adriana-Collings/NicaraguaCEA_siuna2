@@ -1,4 +1,4 @@
-import scr.DecisionTree as DT
+import DT as DT
 import InputData_Condition2 as D
 
 # dictionary for decision nodes
