@@ -1,18 +1,18 @@
 #######################################################################################################################
 #Costs
 #######################################################################################################################
-Diag_Cost = 0               #   cost to get diagnosed
-Access_Cost =0              #   cost to have access
-Surgeon_Cost =0             #   cost to have a surgery
-Survive_Cost = 0            #   cost to survive surgery (0 likely)
+Diag_Cost = 1               #   cost to get diagnosed
+Access_Cost =2              #   cost to have access
+Surgeon_Cost =3             #   cost to have a surgery
+Survive_Cost = 4            #   cost to survive surgery (0 likely)
 
 ##IF they get the surgery
-Die_Surg_Cost =0            #   cost to die in surgery (0 likely)
-Minor_Comp_Cost =0          #   cost of a minor commplication from surgery
-No_Comp_Cost =0             #   cost of no complications from surgery (0 likely)
-Major_Comp_Cost =0          #   cost of major complications from surgery
-Die_Comp_Cost =0            #   cost to die in surgery (0 likely)
-Survive_Comp_Cost = 0       #   cost to survive surgery (0 likely)
+Die_Surg_Cost =5            #   cost to die in surgery (0 likely)
+Minor_Comp_Cost =6          #   cost of a minor commplication from surgery
+No_Comp_Cost =7             #   cost of no complications from surgery (0 likely)
+Major_Comp_Cost =8          #   cost of major complications from surgery
+Die_Comp_Cost =9            #   cost to die in surgery (0 likely)
+Survive_Comp_Cost =10       #   cost to survive surgery (0 likely)
 
 ##If they don't get the surgery
 Nonsurgeon_Cost =0          #   cost of a non-surgical procedure
@@ -62,18 +62,23 @@ No_Access_Suvive_U=1           #utility of surviving with no access
 ####################################################################################################################
 #Probabilities
 ###################################################################################################################
-Pr_Access = 1               #probability of access
-Pr_Surg = 1                 #probability of surgery
+Pr_Access = .1               #probability of access
+Pr_Surg = .2                 #probability of surgery
 
 #if they get the surgery
-Pr_Die = 0                  #probability of dying from surgery
-Pr_Maj_Comp = 0             #probability of a major complication from surgery
-Pr_Min_Comp = 0             #probability of a minor complication from surgery
-Pr_Die_Comp = 0             #probability of dying from a major complication from surgery
+Pr_Die = .3                  #probability of dying from surgery
+Pr_Maj_Comp = .4             #probability of a major complication from surgery
+Pr_Min_Comp = .5             #probability of a minor complication from surgery
+Pr_Die_Comp = .6             #probability of dying from a major complication from surgery
 
 #If they don't get the surgery
-Pr_NoSurg_Die =0            #probability of dying from a non-surgical procedure
-Pr_NoS_Maj_Comp=0           #probability of a major complication from a non-surgical procedure
-Pr_NoS_Min_Comp=0           #probability of a minor complication from a non-surgial procedure
-Pr_No_S_Maj_Comp_Die=0      #probabilty of dying from a major complication of a non-surgical procedure
-Pr_No_A_Die=0               #probability of dying with no access to healthcare
+Pr_NoSurg_Die =.7            #probability of dying from a non-surgical procedure
+Pr_NoS_Maj_Comp=.8           #probability of a major complication from a non-surgical procedure
+Pr_NoS_Min_Comp=.9           #probability of a minor complication from a non-surgial procedure
+Pr_No_S_Maj_Comp_Die=.25      #probabilty of dying from a major complication of a non-surgical procedure
+Pr_No_A_Die=.99               #probability of dying with no access to healthcare
+
+
+YLL = 50            # years of life lost
+YLD_comp = 7        # years of disability as a result of complication
+YLD_disease = 15    # years of disability as a result of the disease
