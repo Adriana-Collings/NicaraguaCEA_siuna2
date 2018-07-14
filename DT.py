@@ -76,32 +76,31 @@ class DecisionNode(Node):
         return self.futureNodes
 
     def get_OS_cost(self):
-        cost = dict()
-        for node in self.futureNodes:
-        # assign the terminal probabilities to a new key (the name of this future node)
-            cost[node.name] = [node.eCost]
-        return cost['OpSmile']
+        #cost = 0
+        for node_OS_C in self.futureNodes:
+            # assign the terminal probabilities to a new key (the name of this future node)
+            return node_OS_C.eCost
 
     def get_NoOS_cost(self):
-        cost = dict()
-        for node in self.futureNodes:
+        #cost = []
+        for node_NoOS_C in self.futureNodes:
         # assign the terminal probabilities to a new key (the name of this future node)
-            cost[node.name] = [node.eCost]
-        return cost['NoOS_OpSmile']
+            #cost.append(node.eCost)
+            return node_NoOS_C.eCost
 
     def get_OS_utility(self):
-        utility = dict()
-        for node in self.futureNodes:
+        #utility = []
+        for node_OS_U in self.futureNodes:
         # assign the terminal probabilities to a new key (the name of this future node)
-            utility[node.name] = [node.eUtility]
-        return utility['OpSmile']
+            #utility.append(node.eUtility)
+            return node_OS_U.eUtility
 
     def get_NoOS_utility(self):
-        utility = dict()
-        for node in self.futureNodes:
+        #utility = []
+        for node_NoOS_U in self.futureNodes:
         # assign the terminal probabilities to a new key (the name of this future node)
-            utility[node.name] = [node.eUtility]
-        return utility['NoOS_OpSmile']
+            #utility.append(node.eUtility)
+            return node_NoOS_U.eUtility
 
 
 class ChanceNode(Node):

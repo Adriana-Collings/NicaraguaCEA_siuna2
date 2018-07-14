@@ -19,21 +19,31 @@ class Patient:
 
     def simulate (self):
         if self._rnd.random_sample() < C_P.PROB_CONDITION_1:
-            tree=DT_C1.DT.DecisionNode('d1', dict_decisions=DT_C1.dictDecisions,
-                                       cum_prob=1, dict_chances=DT_C1.dictChances, dict_terminals=DT_C1.dictTerminal)
-            self._cost_utility=tree.get_cost_utility()
-            self._OS_cost=tree.get_OS_cost()
-            self._NoOS_cost=tree.get_NoOS_cost()
-            self._OS_utility=tree.get_OS_utility()
-            self._NoOS_utility=tree.get_NoOS_utility()
+            tree_OS=DT_C1.DT.DecisionNode('d1', dict_decisions=DT_C1.dictDecisions_OS,
+                                       cum_prob=1, dict_chances=DT_C1.dictChances_OS, dict_terminals=DT_C1.dictTerminal_OS)
+
+            self._cost_utility=tree_OS.get_cost_utility()
+            self._OS_cost=tree_OS.get_OS_cost()
+            self._OS_utility=tree_OS.get_OS_utility()
+            tree_NoOS = DT_C1.DT.DecisionNode('d2', dict_decisions=DT_C1.dictDecisions_NoOS, cum_prob=1,
+                                              dict_chances=DT_C1.dictChances_NoOS, dict_terminals=DT_C1.dictTerminal_NoOS)
+            self._cost_utility=tree_NoOS.get_cost_utility()
+            self._NoOS_cost=tree_NoOS.get_NoOS_cost()
+            self._NoOS_utility=tree_NoOS.get_NoOS_utility()
         else:
-            tree=DT_C2.DT.DecisionNode('d1', dict_decisions=DT_C2.dictDecisions,
-                                       cum_prob=1, dict_chances=DT_C2.dictChances, dict_terminals=DT_C2.dictTerminal)
-            self._cost_utility=tree.get_cost_utility()
-            self._OS_cost=tree.get_OS_cost()
-            self._NoOS_cost=tree.get_NoOS_cost()
-            self._OS_utility=tree.get_OS_utility()
-            self._NoOS_utility=tree.get_NoOS_utility()
+            tree_OS = DT_C1.DT.DecisionNode('d1', dict_decisions=DT_C1.dictDecisions_OS,
+                                            cum_prob=1, dict_chances=DT_C1.dictChances_OS,
+                                            dict_terminals=DT_C1.dictTerminal_OS)
+
+            self._cost_utility = tree_OS.get_cost_utility()
+            self._OS_cost = tree_OS.get_OS_cost()
+            self._OS_utility = tree_OS.get_OS_utility()
+            tree_NoOS = DT_C1.DT.DecisionNode('d2', dict_decisions=DT_C1.dictDecisions_NoOS, cum_prob=1,
+                                              dict_chances=DT_C1.dictChances_NoOS,
+                                              dict_terminals=DT_C1.dictTerminal_NoOS)
+            self._cost_utility = tree_NoOS.get_cost_utility()
+            self._NoOS_cost = tree_NoOS.get_NoOS_cost()
+            self._NoOS_utility = tree_NoOS.get_NoOS_utility()
 
     def get_cost_utility(self):
         return self._cost_utility
@@ -53,12 +63,11 @@ class Patient:
 class YearofPatients:
     def __init__(self, id):
         self._patients = []
-        ##eventually we'll want to add other metrics here. Like how manhy died, etc.
+        # eventually we'll want to add other metrics here. Like how many died, etc.
 
-        self._initial_pop_size=100
-        #fixed internally because we're going to make this number random eventually.
-        # Maybe we'll change this later, but this
-        #should work for now.
+        self._initial_pop_size=10
+        # fixed internally because we're going to make this number random eventually.
+        # Maybe we'll change this later, but this should work for now.
 
         for i in range(self._initial_pop_size):
             # create a new patient (use id * pop_size + i as patient id)
@@ -112,7 +121,6 @@ class YearofPatientsOutputs:
         self._sumStat_OS_utility = StatCls.SummaryStat('Expected Op Smile utility', self._OS_utilities)
         self._sumStat_NoOS_utility = StatCls.SummaryStat('Expected No Op Smile utility', self._NoOS_utilities)
 
-        ##This will be right once we can parse out the utilities from the costs. Shouldn't be TOO hard.
 
     def get_costs_utilities(self):
         return self._costs_utilities
@@ -128,3 +136,15 @@ class YearofPatientsOutputs:
 
     def get_NoOS_utilities(self):
         return self._NoOS_utilities
+
+    def get_sumStat_OS_cost(self):
+        return self._sumStat_OS_cost
+
+    def get_sumStat_NoOS_cost(self):
+        return self._sumStat_NoOS_cost
+
+    def get_sumStat_OS_utility(self):
+        return self._sumStat_OS_utility
+
+    def get_sumStat_NoOS_utility(self):
+        return self._sumStat_NoOS_utility
