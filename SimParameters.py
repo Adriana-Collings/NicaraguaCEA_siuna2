@@ -99,7 +99,7 @@ class YearofPatientsOutputs:
         :param simulated_cohort: a cohort after being simulated
         """
 
-        self._costs_utilities = []
+        #self._costs_utilities = []
         self._OS_costs = []
         self._NoOS_costs = []
         self._OS_utilities = []
@@ -109,7 +109,7 @@ class YearofPatientsOutputs:
         for patient in simulated_cohort.get_patients():
 
             # cost and utility
-            self._costs_utilities.append(patient.get_cost_utility())
+            #self._costs_utilities.append(patient.get_cost_utility())
             self._OS_costs.append(patient.get_OS_cost())
             self._NoOS_costs.append(patient.get_NoOS_cost())
             self._OS_utilities.append(patient.get_OS_utility())
@@ -122,8 +122,8 @@ class YearofPatientsOutputs:
         self._sumStat_NoOS_utility = StatCls.SummaryStat('Expected No Op Smile utility', self._NoOS_utilities)
 
 
-    def get_costs_utilities(self):
-        return self._costs_utilities
+  #  def get_costs_utilities(self):
+   #     return self._costs_utilities
 
     def get_OS_costs(self):
         return self._OS_costs
