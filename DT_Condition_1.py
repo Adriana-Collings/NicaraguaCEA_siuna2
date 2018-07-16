@@ -1,6 +1,7 @@
 import DT as DT
 import InputData_Condition1 as D
 
+
 # dictionary for decision nodes
 #               // key: cost, utility, [future nodes]
 dictDecisions_OS = {'d1': [5, 5, ['OpSmile', 'toss']]}
@@ -97,21 +98,28 @@ dictTerminal_NoOS = {
     'NoOS_Disease_Survive': [D.NoOS_Disease_Survive_C, D.NoOS_Disease_Survive_U]
 }
 
-# CREATING DECISION NODE
-#tree_OS = DT.DecisionNode('d1', dict_decisions=dictDecisions_OS, cum_prob=1, dict_chances=dictChances_OS, dict_terminals=dictTerminal_OS)
+DALY_OS = ((((((((((D.YLD_major_comp*(1-D.PR_OS_S_S_C_Major_Die)+ ((D.YLL+D.YLD_major_comp)*D.PR_OS_S_S_C_Major_Die)) *
+        D.PR_OS_S_S_C_Major) + ((1-D.PR_OS_S_S_C_Major)*D.YLD_major_comp)) * D.PR_OS_S_S_Comp) +
+        ((1-D.PR_OS_S_S_Comp)*0))* (1-D.PR_OS_S_Die)) + ((D.PR_OS_S_Die)*D.YLL)) * D.PR_OS_A_Surgery) +
+        ((1-D.PR_OS_A_Surgery)*((D.YLD_disease*(1-D.PR_OS_A_NoSurgery_Die)) + (D.YLL*D.PR_OS_A_NoSurgery_Die))))*D.PR_OS_Access) +\
+                (((((((((((D.YLD_major_comp*(1-D.PR_OS_M_S_C_Major_Die)) + ((D.YLL+D.YLD_major_comp)*D.PR_OS_M_S_C_Major_Die)) *
+                   D.PR_OS_M_S_C_Major) + ((1-D.PR_OS_M_S_C_Major)*D.YLD_minor_comp)) * D.PR_OS_M_S_Comp) +
+                    ((1-D.PR_OS_M_S_Comp)*0)) * (1-D.PR_OS_Managua_Die)) + (D.PR_OS_Managua_Die*D.YLL)) * D.PR_OS_Managua) +
+                   ((1-D.PR_OS_Managua)*((D.YLD_disease*(1-D.PR_OS_Disease_Die))+((D.YLL + D.YLD_disease)*D.PR_OS_Disease_Die)))) *
+                    (1-D.PR_OS_Access))
 
-#print(tree_OS.get_cost_utility())
-#print(tree_OS.get_terminal_prob())
-#print(tree_OS.get_OS_cost())
-#print(tree_OS.get_OS_utility())
-
-#tree_NoOS = DT.DecisionNode('d2', dict_decisions=dictDecisions_NoOS, cum_prob=1, dict_chances=dictChances_NoOS, dict_terminals=dictTerminal_NoOS)
-#print(tree_NoOS.get_cost_utility())
-#print(tree_NoOS.get_terminal_prob())
-#print(tree_NoOS.get_NoOS_cost())
-#print(tree_NoOS.get_NoOS_utility())
-
+DALY_NoOS = ((((((((((D.YLD_major_comp*(1-D.PR_NoOS_S_S_C_M_Die)+ ((D.YLL+D.YLD_major_comp)*D.PR_NoOS_S_S_C_M_Die)) *
+        D.PR_NoOS_S_S_C_Major) + ((1-D.PR_NoOS_S_S_C_Major)*D.YLD_major_comp)) * D.PR_NoOS_S_S_Comp) +
+        ((1-D.PR_OS_S_S_Comp)*0))* (1-D.PR_NoOS_S_Die)) + ((D.PR_NoOS_S_Die)*D.YLL)) * D.PR_NoOS_A_Surgery) +
+        ((1-D.PR_NoOS_A_Surgery)*((D.YLD_disease*(1-D.PR_NoOS_NS_Die)) + (D.YLL*D.PR_NoOS_NS_Die))))*D.PR_NoOS_Access) +\
+                (((((((((((D.YLD_major_comp*(1-D.PR_NoOS_NA_M_C_M_Die)) + ((D.YLL+D.YLD_major_comp)*D.PR_NoOS_NA_M_C_M_Die)) *
+                   D.PR_NoOS_NA_M_Comp_Major) + ((1-D.PR_NoOS_NA_M_Comp_Major)*D.YLD_minor_comp)) * D.PR_NoOS_NA_M_Comp) +
+                    ((1-D.PR_NoOS_NA_M_Comp)*0)) * (1-D.PR_NoOS_NA_M_Die)) + (D.PR_NoOS_NA_M_Die*D.YLL)) * D.PR_NoOS_NA_Managua) +
+                   ((1-D.PR_NoOS_NA_Managua)*((D.YLD_disease*(1-D.PR_NoOS_NA_D_Die))+((D.YLL + D.YLD_disease)*D.PR_NoOS_NA_D_Die)))) *
+                    (1-D.PR_NoOS_Access))
 
 
+DALY = DALY_OS - DALY_NoOS
 
-
+def get_DALY (self):
+    return DALY

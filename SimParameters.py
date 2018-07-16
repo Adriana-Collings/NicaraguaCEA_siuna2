@@ -14,8 +14,9 @@ class Patient:
         self._cost_utility = []
         self._OS_cost = 0
         self._NoOS_cost = 0
-        self._OS_utility=0
-        self._NoOS_utility=0
+        self._OS_utility = 0
+        self._NoOS_utility = 0
+        self._DALY = 0
 
     def simulate (self):
         if self._rnd.random_sample() < C_P.PROB_CONDITION_1:
@@ -30,20 +31,25 @@ class Patient:
             self._cost_utility=tree_NoOS.get_cost_utility()
             self._NoOS_cost=tree_NoOS.get_NoOS_cost()
             self._NoOS_utility=tree_NoOS.get_NoOS_utility()
+            self._DALY = DT_C1.get_DALY(self)
         else:
-            tree_OS = DT_C1.DT.DecisionNode('d1', dict_decisions=DT_C1.dictDecisions_OS,
-                                            cum_prob=1, dict_chances=DT_C1.dictChances_OS,
-                                            dict_terminals=DT_C1.dictTerminal_OS)
+            tree_OS = DT_C2.DT.DecisionNode('d1', dict_decisions=DT_C2.dictDecisions_OS,
+                                            cum_prob=1, dict_chances=DT_C2.dictChances_OS,
+                                            dict_terminals=DT_C2.dictTerminal_OS)
 
             self._cost_utility = tree_OS.get_cost_utility()
             self._OS_cost = tree_OS.get_OS_cost()
             self._OS_utility = tree_OS.get_OS_utility()
-            tree_NoOS = DT_C1.DT.DecisionNode('d2', dict_decisions=DT_C1.dictDecisions_NoOS, cum_prob=1,
-                                              dict_chances=DT_C1.dictChances_NoOS,
-                                              dict_terminals=DT_C1.dictTerminal_NoOS)
+            tree_NoOS = DT_C2.DT.DecisionNode('d2', dict_decisions=DT_C2.dictDecisions_NoOS, cum_prob=1,
+                                              dict_chances=DT_C2.dictChances_NoOS,
+                                              dict_terminals=DT_C2.dictTerminal_NoOS)
             self._cost_utility = tree_NoOS.get_cost_utility()
             self._NoOS_cost = tree_NoOS.get_NoOS_cost()
             self._NoOS_utility = tree_NoOS.get_NoOS_utility()
+            self._DALY = DT_C2.get_DALY(self)
+
+    def get_DALY(self):
+        return self._DALY
 
     def get_cost_utility(self):
         return self._cost_utility
@@ -65,7 +71,7 @@ class YearofPatients:
         self._patients = []
         # eventually we'll want to add other metrics here. Like how many died, etc.
 
-        self._initial_pop_size=10
+        self._initial_pop_size=100
         # fixed internally because we're going to make this number random eventually.
         # Maybe we'll change this later, but this should work for now.
 
@@ -104,6 +110,7 @@ class YearofPatientsOutputs:
         self._NoOS_costs = []
         self._OS_utilities = []
         self._NoOS_utilities = []
+        self._DALY = []
 
         # find patients' survival times
         for patient in simulated_cohort.get_patients():
@@ -114,16 +121,21 @@ class YearofPatientsOutputs:
             self._NoOS_costs.append(patient.get_NoOS_cost())
             self._OS_utilities.append(patient.get_OS_utility())
             self._NoOS_utilities.append(patient.get_NoOS_utility())
+            self._DALY.append(patient.get_DALY())
 
         # summary statistics
         self._sumStat_OS_cost = StatCls.SummaryStat('Expected Op Smile Cost', self._OS_costs)
         self._sumStat_NoOS_cost = StatCls.SummaryStat('Expected No Op Smile Cost', self._NoOS_costs)
         self._sumStat_OS_utility = StatCls.SummaryStat('Expected Op Smile utility', self._OS_utilities)
         self._sumStat_NoOS_utility = StatCls.SummaryStat('Expected No Op Smile utility', self._NoOS_utilities)
+        self._sumStat_DALY = StatCls.SummaryStat('DALY', self._DALY)
 
 
   #  def get_costs_utilities(self):
    #     return self._costs_utilities
+
+    def get_DALY(self):
+        return self._DALY
 
     def get_OS_costs(self):
         return self._OS_costs
@@ -148,3 +160,6 @@ class YearofPatientsOutputs:
 
     def get_sumStat_NoOS_utility(self):
         return self._sumStat_NoOS_utility
+
+    def get_sumStat_DALY(self):
+        return self._sumStat_DALY

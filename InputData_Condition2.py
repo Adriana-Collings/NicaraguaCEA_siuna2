@@ -1,3 +1,9 @@
+# DALY calculation
+YLD_major_comp = 5
+YLL = 10  # do we need different YLL's?
+YLD_minor_comp = 3
+YLD_disease = 7
+
 ########################################################################################################################
 ########################################################################################################################
 # CHANCE NODES
@@ -20,15 +26,15 @@ OS_NA_M_S_Comp_C = 200
 OS_NA_M_S_C_Major_C = 300
 OS_NA_Disease_C = 20
 #NoOpSmile
-NoOS_C = 0
-NoOS_Access_C = 0
-NoOS_A_Surgery_C = 0
+NoOS_C = 10
+NoOS_Access_C = 10
+NoOS_A_Surgery_C = 10
 NoOS_A_S_Survive_C = 80
 NoOS_A_S_S_Comp_C = 2000
 NoOS_A_S_S_C_Major_C = 5000
 NoOS_A_NoSurgery_C = 10
-NoOS_NoAccess_C = 0
-NoOS_NA_Managua_C = 0
+NoOS_NoAccess_C = 10
+NoOS_NA_Managua_C = 10
 NoOS_NA_M_Survive_C = 300
 NoOS_NA_M_S_Comp_C = 200
 NoOS_NA_M_S_C_Major_C = 300
@@ -50,15 +56,15 @@ OS_NA_M_S_Comp_U = 3
 OS_NA_M_S_C_Major_U = 1
 OS_NA_Disease_U = 4
 #NoOpSmile
-NoOS_U = 0
-NoOS_Access_U = 0
-NoOS_A_Surgery_U = 0
+NoOS_U = 10
+NoOS_Access_U = 10
+NoOS_A_Surgery_U = 10
 NoOS_A_S_Survive_U = 80
-NoOS_A_S_S_Comp_U = 2000
-NoOS_A_S_S_C_Major_U = 5000
+NoOS_A_S_S_Comp_U = 0
+NoOS_A_S_S_C_Major_U = 0
 NoOS_A_NoSurgery_U = 10
-NoOS_NoAccess_U = 0
-NoOS_NA_Managua_U = 0
+NoOS_NoAccess_U = 10
+NoOS_NA_Managua_U = 10
 NoOS_NA_M_Survive_U = 300
 NoOS_NA_M_S_Comp_U = 200
 NoOS_NA_M_S_C_Major_U = 300
@@ -85,17 +91,18 @@ PR_OS_M_S_Comp = .5
 PR_OS_M_S_C_Major = .5
 PR_OS_M_S_C_Major_Die = .5
 PR_OS_Disease_Die = .5
-PR_NoOpSmile_Access = .5
-PR_NoOpSmile_Surgery = .5
-PR_NoOS_Surgery_Die = .5
+# noOS
+PR_NoOS_Access = .5
+PR_NoOS_A_Surgery = .5
+PR_NoOS_S_Die = .5
 PR_NoOS_S_S_Comp = .5
 PR_NoOS_S_S_C_Major = .5
 PR_NoOS_S_S_C_M_Die = .5
 PR_NoOS_NS_Die = .5
 PR_NoOS_NA_Managua = .5
-Pr_NoOS_NA_M_Die = .5
-Pr_NoOS_NA_M_Comp = .5
-PR_NoOS_M_Comp_Major = .5
+PR_NoOS_NA_M_Die = .5
+PR_NoOS_NA_M_Comp = .5
+PR_NoOS_NA_M_Comp_Major = .5
 PR_NoOS_NA_M_C_M_Die = .5
 PR_NoOS_NA_D_Die = .5
 
@@ -122,20 +129,20 @@ OS_M_S_C_Major_Survive_C = 100
 OS_Disease_Die_C = 100
 OS_Disease_Survive_C = 100
 # NoOpSmile
-NoOS_S_Die_C = 100
-NoOS_S_S_NoComp_C = 100
-NoOS_S_S_Minor_C = 100
+NoOS_S_Die_C = 0
+NoOS_S_S_NoComp_C = 0
+NoOS_S_S_Minor_C = 0
 NoOS_S_S_C_Major_Die_C = 0
-NoOS_S_S_C_Major_Survive_C = 100
-NoOS_NoSurgery_Die_C = 100
-NoOS_NoSurgery_Survive_C = 100
+NoOS_S_S_C_Major_Survive_C = 000
+NoOS_NoSurgery_Die_C = 0
+NoOS_NoSurgery_Survive_C = 0
 NoOS_Managua_Die_C = 0
 NoOS_M_S_NoComp_C = 0
 NoOS_M_S_C_Minor_C = 0
-NoOS_M_S_C_Major_Die_C = 100
-NoOS_M_S_C_Major_Survive_C = 100
-NoOS_Disease_Die_C = 100
-NoOS_Disease_Survive_C = 100
+NoOS_M_S_C_Major_Die_C = 0
+NoOS_M_S_C_Major_Survive_C = 0
+NoOS_Disease_Die_C = 0
+NoOS_Disease_Survive_C = 0
 
 ########################################################################################################################
 # utilities

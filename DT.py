@@ -8,6 +8,7 @@ class Properties(Enum):
     UTILITY = 1
     NODES = 2
     PROB = 3
+#    DALY = 4
 
 
 class Node:
@@ -22,6 +23,7 @@ class Node:
         self.utility = 0        # immediate utility of visiting this node
         self.eCost = 0          # expected cost of visiting this node (includes the immediate cost)
         self.eUtility = 0       # expected utility of visiting this node (includes the immediate utility)
+#        self.DALY = 0
 
     def get_terminal_prob(self):
         """ abstract method to be overridden in derived classes
@@ -74,6 +76,14 @@ class DecisionNode(Node):
 
     def print_future_nodes(self):
         return self.futureNodes
+
+#    def get_OS_DALY (self):
+#        for node_OS_DALY in self.futureNodes:
+#            return node_OS_DALY.DALY
+
+#    def get_NoOS_DALY (self):
+#        for node_NoOS_DALY in self.futureNodes:
+#            return node_NoOS_DALY.DALY
 
     def get_OS_cost(self):
         #cost = 0
@@ -135,12 +145,14 @@ class ChanceNode(Node):
         # calculate expected cost and utility of this node
         self.eCost = self.cost          # adding the immediate cost
         self.eUtility = self.utility    # adding the immediate utility
+       # self.eDALY = self.DALY
         i = 0  # iterator in future nodes
         for node in self.futureNodes:
             # add the expected cost of this future node
             self.eCost += node.eCost * self.pFutureNodes[i]
             # add the expected utility of this future node
             self.eUtility += node.eUtility * self.pFutureNodes[i]
+           # self.eDALY += node.eDALY * self.pFutureNodes[i]
             # increment i
             i += 1
 
@@ -171,6 +183,7 @@ class TerminalNode(Node):
             self.eCost = dict_terminals[name][Properties.COST.value]
             # find the utility of this node (for terminal nodes eUtility = immediate utility)
             self.eUtility = dict_terminals[name][Properties.UTILITY.value]
+           # self.eDALY = dict_terminals[name][Properties.DALY.value]
 
         else:
             print('{} is not in the terminal node dictionary'.format(self.name))
@@ -248,3 +261,5 @@ def graph_outcomes(decision_tree):
 
     # save the figure
     plt.show()
+
+

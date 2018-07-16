@@ -1,3 +1,10 @@
+
+# DALY calculation
+YLD_major_comp = 5
+YLL = 10  # do we need different YLL's?
+YLD_minor_comp = 3
+YLD_disease = 7
+
 ########################################################################################################################
 ########################################################################################################################
 # CHANCE NODES
@@ -86,19 +93,19 @@ PR_OS_M_S_C_Major = .5
 PR_OS_M_S_C_Major_Die = .5
 PR_OS_Disease_Die = .5
 # noOS
-PR_NoOS_Access = .5
-PR_NoOS_A_Surgery = .5
-PR_NoOS_S_Die = .5
-PR_NoOS_S_S_Comp = .5
-PR_NoOS_S_S_C_Major = .5
-PR_NoOS_S_S_C_M_Die = .5
-PR_NoOS_NS_Die = .5
-PR_NoOS_NA_Managua = .5
-PR_NoOS_NA_M_Die = .5
-PR_NoOS_NA_M_Comp = .5
-PR_NoOS_NA_M_Comp_Major = .5
-PR_NoOS_NA_M_C_M_Die = .5
-PR_NoOS_NA_D_Die = .5
+PR_NoOS_Access = .05
+PR_NoOS_A_Surgery = .05
+PR_NoOS_S_Die = .05
+PR_NoOS_S_S_Comp = .05
+PR_NoOS_S_S_C_Major = .05
+PR_NoOS_S_S_C_M_Die = .05
+PR_NoOS_NS_Die = .05
+PR_NoOS_NA_Managua = .05
+PR_NoOS_NA_M_Die = .05
+PR_NoOS_NA_M_Comp = .05
+PR_NoOS_NA_M_Comp_Major = .05
+PR_NoOS_NA_M_C_M_Die = .05
+PR_NoOS_NA_D_Die = .05
 
 ########################################################################################################################
 ########################################################################################################################
