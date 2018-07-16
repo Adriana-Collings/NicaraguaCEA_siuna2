@@ -1,5 +1,10 @@
 import DT as DT
-import InputData_Condition1 as D
+import SimParameters as SP
+
+if SP.draw == 'a':
+    import InputData_Condition1 as D
+if SP.draw == 'b':
+    import InputData_Condition2 as D
 
 
 # dictionary for decision nodes
@@ -123,3 +128,13 @@ DALY = DALY_OS - DALY_NoOS
 
 def get_DALY (self):
     return DALY
+
+tree_OS = DT.DecisionNode('d1', dict_decisions=dictDecisions_OS,
+                                            cum_prob=1, dict_chances=dictChances_OS,
+                                            dict_terminals=dictTerminal_OS)
+
+
+tree_NoOS = DT.DecisionNode('d2', dict_decisions=dictDecisions_NoOS, cum_prob=1,
+                                              dict_chances=dictChances_NoOS, dict_terminals=dictTerminal_NoOS)
+
+#DT.graph_outcomes(decision_tree = tree_NoOS)

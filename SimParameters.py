@@ -2,9 +2,16 @@ import numpy as np
 from scipy.stats import expon
 import scr.SamplePathClasses as PathCls
 import scr.StatisticalClasses as StatCls
+import numpy
+from numpy.random import choice
 import ConditionTypeProbs as C_P
-import DT_Condition_1 as DT_C1
+import DT_Condition_1 as DT
 import DT_Condition_2 as DT_C2
+
+probs = numpy.random.dirichlet(alpha=(1, 2), size=None)
+conditions_list = ['a', 'b']
+
+draw = choice(a=conditions_list, p=probs)
 
 class Patient:
     def __init__(self, id):
@@ -19,34 +26,36 @@ class Patient:
         self._DALY = 0
 
     def simulate (self):
-        if self._rnd.random_sample() < C_P.PROB_CONDITION_1:
-            tree_OS=DT_C1.DT.DecisionNode('d1', dict_decisions=DT_C1.dictDecisions_OS,
-                                       cum_prob=1, dict_chances=DT_C1.dictChances_OS, dict_terminals=DT_C1.dictTerminal_OS)
+
+        if draw == 'a':
+            import InputData_Condition1 as D
+            tree_OS=DT.DT.DecisionNode('d1', dict_decisions=DT.dictDecisions_OS,
+                                       cum_prob=1, dict_chances=DT.dictChances_OS, dict_terminals=DT.dictTerminal_OS)
 
             self._cost_utility=tree_OS.get_cost_utility()
             self._OS_cost=tree_OS.get_OS_cost()
             self._OS_utility=tree_OS.get_OS_utility()
-            tree_NoOS = DT_C1.DT.DecisionNode('d2', dict_decisions=DT_C1.dictDecisions_NoOS, cum_prob=1,
-                                              dict_chances=DT_C1.dictChances_NoOS, dict_terminals=DT_C1.dictTerminal_NoOS)
+            tree_NoOS = DT.DT.DecisionNode('d2', dict_decisions=DT.dictDecisions_NoOS, cum_prob=1,
+                                              dict_chances=DT.dictChances_NoOS, dict_terminals=DT.dictTerminal_NoOS)
             self._cost_utility=tree_NoOS.get_cost_utility()
             self._NoOS_cost=tree_NoOS.get_NoOS_cost()
             self._NoOS_utility=tree_NoOS.get_NoOS_utility()
-            self._DALY = DT_C1.get_DALY(self)
-        else:
-            tree_OS = DT_C2.DT.DecisionNode('d1', dict_decisions=DT_C2.dictDecisions_OS,
-                                            cum_prob=1, dict_chances=DT_C2.dictChances_OS,
-                                            dict_terminals=DT_C2.dictTerminal_OS)
+            self._DALY = DT.get_DALY(self)
+        if draw == 'b':
+            tree_OS = DT.DT.DecisionNode('d1', dict_decisions=DT.dictDecisions_OS,
+                                            cum_prob=1, dict_chances=DT.dictChances_OS,
+                                            dict_terminals=DT.dictTerminal_OS)
 
             self._cost_utility = tree_OS.get_cost_utility()
             self._OS_cost = tree_OS.get_OS_cost()
             self._OS_utility = tree_OS.get_OS_utility()
-            tree_NoOS = DT_C2.DT.DecisionNode('d2', dict_decisions=DT_C2.dictDecisions_NoOS, cum_prob=1,
-                                              dict_chances=DT_C2.dictChances_NoOS,
-                                              dict_terminals=DT_C2.dictTerminal_NoOS)
+            tree_NoOS = DT.DT.DecisionNode('d2', dict_decisions=DT.dictDecisions_NoOS, cum_prob=1,
+                                              dict_chances=DT.dictChances_NoOS,
+                                              dict_terminals=DT.dictTerminal_NoOS)
             self._cost_utility = tree_NoOS.get_cost_utility()
             self._NoOS_cost = tree_NoOS.get_NoOS_cost()
             self._NoOS_utility = tree_NoOS.get_NoOS_utility()
-            self._DALY = DT_C2.get_DALY(self)
+            self._DALY = DT.get_DALY(self)
 
     def get_DALY(self):
         return self._DALY
