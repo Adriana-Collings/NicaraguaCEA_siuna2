@@ -12,19 +12,19 @@ YLD_disease = 7
 # costs
 ########################################################################################################################
 #OpSmile
-OpSmile_C = 5000
-OS_Access_C = 200
-OS_A_Surgery_C = 700
-OS_A_S_Survive_C = 80
-OS_A_S_S_Comp_C = 2000
-OS_A_S_S_C_Major_C = 5000
-OS_A_NoSurgery_C = 20
+OpSmile_C = 0
+OS_Access_C = 0
+OS_A_Surgery_C = 0
+OS_A_S_Survive_C = 0
+OS_A_S_S_Comp_C = 0
+OS_A_S_S_C_Major_C = 0
+OS_A_NoSurgery_C = 0
 OS_NoAccess_C = 0
-OS_NA_Managua_C = 10000
-OS_NA_M_Survive_C = 300
+OS_NA_Managua_C = 0
+OS_NA_M_Survive_C = 0
 OS_NA_M_S_Comp_C = 200
-OS_NA_M_S_C_Major_C = 300
-OS_NA_Disease_C = 20
+OS_NA_M_S_C_Major_C = 0
+OS_NA_Disease_C = 0
 #NoOpSmile
 NoOS_C = 10
 NoOS_Access_C = 10

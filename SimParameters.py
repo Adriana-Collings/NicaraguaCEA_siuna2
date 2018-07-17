@@ -4,14 +4,11 @@ import scr.SamplePathClasses as PathCls
 import scr.StatisticalClasses as StatCls
 import numpy
 from numpy.random import choice
-import ConditionTypeProbs as C_P
-import DT_Condition_1 as DT
-import DT_Condition_2 as DT_C2
 
-probs = numpy.random.dirichlet(alpha=(1, 2), size=None)
-conditions_list = ['a', 'b']
 
-draw = choice(a=conditions_list, p=probs)
+# the dirichlet condition randomization will need to be more intricate. you will need to count the number of times each
+# condition occurs and then obtain the summary statistics based on those counts. not the summary statistics overall
+# after that you should really make sure that your CEA plane will work
 
 class Patient:
     def __init__(self, id):
@@ -24,11 +21,18 @@ class Patient:
         self._OS_utility = 0
         self._NoOS_utility = 0
         self._DALY = 0
+        self._draw = 0
 
-    def simulate (self):
+    def simulate(self):
 
-        if draw == 'a':
-            import InputData_Condition1 as D
+        probs = numpy.random.dirichlet(alpha=(1, 2), size=None)     # dirichlet distribution: the numbers of alpha
+        # determine the concentration of the probability for each option
+        conditions_list = ['a', 'b']
+
+        self._draw = choice(a=conditions_list, p=probs)
+
+        if self._draw == 'a':
+            import DT_Condition_1 as DT
             tree_OS=DT.DT.DecisionNode('d1', dict_decisions=DT.dictDecisions_OS,
                                        cum_prob=1, dict_chances=DT.dictChances_OS, dict_terminals=DT.dictTerminal_OS)
 
@@ -41,17 +45,18 @@ class Patient:
             self._NoOS_cost=tree_NoOS.get_NoOS_cost()
             self._NoOS_utility=tree_NoOS.get_NoOS_utility()
             self._DALY = DT.get_DALY(self)
-        if draw == 'b':
+        if self._draw == 'b':
+            import DT_Condition_2 as DT
             tree_OS = DT.DT.DecisionNode('d1', dict_decisions=DT.dictDecisions_OS,
-                                            cum_prob=1, dict_chances=DT.dictChances_OS,
-                                            dict_terminals=DT.dictTerminal_OS)
+                                          cum_prob=1, dict_chances=DT.dictChances_OS,
+                                         dict_terminals=DT.dictTerminal_OS)
 
             self._cost_utility = tree_OS.get_cost_utility()
             self._OS_cost = tree_OS.get_OS_cost()
             self._OS_utility = tree_OS.get_OS_utility()
             tree_NoOS = DT.DT.DecisionNode('d2', dict_decisions=DT.dictDecisions_NoOS, cum_prob=1,
-                                              dict_chances=DT.dictChances_NoOS,
-                                              dict_terminals=DT.dictTerminal_NoOS)
+                                            dict_chances=DT.dictChances_NoOS,
+                                           dict_terminals=DT.dictTerminal_NoOS)
             self._cost_utility = tree_NoOS.get_cost_utility()
             self._NoOS_cost = tree_NoOS.get_NoOS_cost()
             self._NoOS_utility = tree_NoOS.get_NoOS_utility()
@@ -138,10 +143,6 @@ class YearofPatientsOutputs:
         self._sumStat_OS_utility = StatCls.SummaryStat('Expected Op Smile utility', self._OS_utilities)
         self._sumStat_NoOS_utility = StatCls.SummaryStat('Expected No Op Smile utility', self._NoOS_utilities)
         self._sumStat_DALY = StatCls.SummaryStat('DALY', self._DALY)
-
-
-  #  def get_costs_utilities(self):
-   #     return self._costs_utilities
 
     def get_DALY(self):
         return self._DALY
