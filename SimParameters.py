@@ -4,6 +4,7 @@ import scr.SamplePathClasses as PathCls
 import scr.StatisticalClasses as StatCls
 import numpy
 from numpy.random import choice
+import DT as DTb
 
 
 # you should really make sure that your CEA plane will work
@@ -27,9 +28,9 @@ class Patient:
         self._draw = 0                  # empty vector for Dirichlet distribution draw
 
         # dirichlet distribution:
-        probs = numpy.random.dirichlet(alpha=(1, 3, 1), size=None)      # the numbers of alpha determine the
+        probs = numpy.random.dirichlet(alpha=(1, 2), size=None)      # the numbers of alpha determine the
         # concentration of the probability for each option
-        conditions_list = ['a', 'b', 'c']                               # list of conditions (refer to Conditions.py)
+        conditions_list = ['a', 'b']                               # list of conditions (refer to Conditions.py)
 
         self.draw = choice(a=conditions_list, p=probs)                  # drawing a random condition
 
@@ -50,6 +51,7 @@ class Patient:
             self._NoOS_cost=tree_NoOS.get_NoOS_cost()
             self._NoOS_utility=tree_NoOS.get_NoOS_utility()
             self._DALY = DT.get_DALY(self)
+
 
         if self.draw == 'b':
             import DT_Condition_2 as DT
@@ -207,6 +209,12 @@ class YearofPatientsOutputs:
         self._sumStat_con_b_NoOS_utilities = StatCls.SummaryStat("Condition B No Op Smile Utilities",
                                                                  self._con_b_patients_NoOS_utilities)
         self._sumStat_con_b_DALY = StatCls.SummaryStat("Condition B DALY", self._con_b_patients_DALY)
+
+    def get_con_a_OS_utilities(self):
+        return self._con_a_patients_OS_utilities
+
+    def get_con_a_NoOS_utilities(self):
+        return self._con_a_patients_NoOS_utilities
 
     def get_DALY(self):
         return self._DALY

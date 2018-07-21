@@ -37,6 +37,9 @@ class DecisionNode(Node):
         :param dict_terminals: dictionary of terminal nodes
         """
         self.futureNodes = []  # list of future node objects
+        self.DALY_b = 0
+        self.OS_U = 0
+        self.NoOS_U = 0
 
         # find if this node is in the decision dictionary
         if name in dict_decisions:
@@ -99,6 +102,18 @@ class DecisionNode(Node):
         # assign the terminal probabilities to a new key (the name of this future node)
             #utility.append(node.eUtility)
             return node_NoOS_U.eUtility
+
+    def get_DALYb(self):
+        for node_OS_U in self.futureNodes:
+        # assign the terminal probabilities to a new key (the name of this future node)
+            #utility.append(node.eUtility)
+            node_OS_U.eUtility = self.OS_U
+        for node_NoOS_U in self.futureNodes:
+        # assign the terminal probabilities to a new key (the name of this future node)
+            #utility.append(node.eUtility)
+            node_NoOS_U.eUtility = self.NoOS_U
+        self.DALYb = self.OS_U - self.NoOS_U
+        return self.DALYb
 
 
 class ChanceNode(Node):

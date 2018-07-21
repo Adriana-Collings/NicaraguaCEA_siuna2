@@ -1,9 +1,27 @@
+import DT_Condition_1 as DALY
 
 # DALY calculation
-YLD_major_comp = 5
-YLL = 10  # do we need different YLL's?
-YLD_minor_comp = 3
-YLD_disease = 7
+K = 0               # modulates age weight inclusion (1 or 0)
+C = 0.1658          # mathematical constant
+r_YLL = 0             # discount rate (0%, 3%, or 6%)
+a_YLL = 55              # age at death (randomize?)
+b = 0.04            # parameter from age weighting function (0.04)
+e = 2.72            # natural logarithm root (2.72)
+L_YLL = 78              # life expectancy (randomize for condition or keep constant for country?)
+
+#K = 0               # modulates age weight inclusion (1 or 0)
+#C = 0.1658          # mathematical constant
+r_YLD = 0.03            # discount rate (0%, 3%, or 6%)
+a_YLD = 5              # age at ONSET (randomize?)
+#b = 0.04            # parameter from age weighting function (0.04)
+#e = 2.72            # natural logarithm root (2.72)
+L_YLD = 7              # years lived with disability (randomize for condition or keep constant for country?)
+D = .78             # disability weight
+
+YLD_major_comp = DALY.YLD
+YLL = DALY.YLL  # do we need different YLL's?
+YLD_minor_comp = DALY.YLD
+YLD_disease = DALY.YLD
 
 ########################################################################################################################
 ########################################################################################################################
@@ -43,40 +61,40 @@ NoOS_NA_Disease_C = 20
 ########################################################################################################################
 # utilities
 ########################################################################################################################
-OpSmile_U = 5
-OS_Access_U = 10
-OS_A_Surgery_U = 20
-OS_A_S_Survive_U = 15
-OS_A_S_S_Comp_U = 12
-OS_A_S_S_C_Major_U = 1
-OS_A_NoSurgery_U = 10
-OS_NoAccess_U = 2
-OS_NA_Managua_U = 1
-OS_NA_M_Survive_U = 10
-OS_NA_M_S_Comp_U = 3
-OS_NA_M_S_C_Major_U = 1
-OS_NA_Disease_U = 4
+OpSmile_U = 0               # all equal to zero when utility is DALY's because there are not terminal nodes
+OS_Access_U = 0
+OS_A_Surgery_U = 0
+OS_A_S_Survive_U = 0
+OS_A_S_S_Comp_U = 0
+OS_A_S_S_C_Major_U = 0
+OS_A_NoSurgery_U = 0
+OS_NoAccess_U = 0
+OS_NA_Managua_U = 0
+OS_NA_M_Survive_U = 0
+OS_NA_M_S_Comp_U = 0
+OS_NA_M_S_C_Major_U = 0
+OS_NA_Disease_U = 0
 #NoOpSmile
-NoOS_U = 10
-NoOS_Access_U = 10
-NoOS_A_Surgery_U = 10
-NoOS_A_S_Survive_U = 80
-NoOS_A_S_S_Comp_U = 2000
-NoOS_A_S_S_C_Major_U = 5000
-NoOS_A_NoSurgery_U = 10
-NoOS_NoAccess_U = 10
-NoOS_NA_Managua_U = 10
-NoOS_NA_M_Survive_U = 300
-NoOS_NA_M_S_Comp_U = 200
-NoOS_NA_M_S_C_Major_U = 300
-NoOS_NA_Disease_U = 20
+NoOS_U = 0
+NoOS_Access_U = 0
+NoOS_A_Surgery_U = 0
+NoOS_A_S_Survive_U = 0
+NoOS_A_S_S_Comp_U = 0
+NoOS_A_S_S_C_Major_U = 0
+NoOS_A_NoSurgery_U = 0
+NoOS_NoAccess_U = 0
+NoOS_NA_Managua_U = 0
+NoOS_NA_M_Survive_U = 0
+NoOS_NA_M_S_Comp_U = 0
+NoOS_NA_M_S_C_Major_U = 0
+NoOS_NA_Disease_U = 0
 
 ########################################################################################################################
 ########################################################################################################################
 # probabilities
 ########################################################################################################################
 ########################################################################################################################
-PR_OpSmile = .5
+PR_OpSmile = .9
 PR_NoOpSmile = .5
 
 PR_OS_Access = .5
@@ -148,34 +166,35 @@ NoOS_Disease_Survive_C = 100
 ########################################################################################################################
 # utilities
 ########################################################################################################################
-# OpSmile
-OS_S_Die_U = 10
-OS_S_S_NoComp_U = 10
-OS_S_S_Minor_U = 10
-OS_S_S_C_Major_Die_U = 10
-OS_S_S_C_Major_Survive_U = 10
-OS_NoSurgery_Die_U = 10
-OS_NoSurgery_Survive_U = 10
-OS_Managua_Die_U = 10
-OS_M_S_NoComp_U = 10
-OS_M_S_C_Minor_U = 10
-OS_M_S_C_Major_Die_U = 10
-OS_M_S_C_Major_Survive_U = 10
-OS_Disease_Die_U = 10
-OS_Disease_Survive_U = 10
-# NoOpSmile
-NoOS_S_Die_U = 10
-NoOS_S_S_NoComp_U = 10
-NoOS_S_S_Minor_U = 10
-NoOS_S_S_C_Major_Die_U = 10
-NoOS_S_S_C_Major_Survive_U = 10
-NoOS_NoSurgery_Die_U = 10
-NoOS_NoSurgery_Survive_U = 10
-NoOS_Managua_Die_U = 10
-NoOS_M_S_NoComp_U = 10
-NoOS_M_S_C_Minor_U = 10
-NoOS_M_S_C_Major_Die_U = 10
-NoOS_M_S_C_Major_Survive_U = 10
-NoOS_Disease_Die_U = 10
-NoOS_Disease_Survive_U = 10
+#OpSmile
+OS_S_Die_U=YLL
+OS_S_S_NoComp_U=0
+OS_S_S_Minor_U= YLD_minor_comp + YLL
+OS_S_S_C_Major_Die_U= YLL
+OS_S_S_C_Major_Survive_U= YLD_major_comp + YLL
+OS_NoSurgery_Die_U= YLL
+OS_NoSurgery_Survive_U= YLD_disease + YLL
+OS_Managua_Die_U= YLL
+OS_M_S_NoComp_U=0
+OS_M_S_C_Minor_U=YLD_disease + YLL
+OS_M_S_C_Major_Die_U=YLL
+OS_M_S_C_Major_Survive_U= YLD_major_comp + YLL
+OS_Disease_Die_U= YLL
+OS_Disease_Survive_U=YLD_disease + YLL
+#NoOpSmile
+NoOS_S_Die_U= YLL
+NoOS_S_S_NoComp_U= 0
+NoOS_S_S_Minor_U= YLD_minor_comp + YLL
+NoOS_S_S_C_Major_Die_U= YLL
+NoOS_S_S_C_Major_Survive_U= YLD_major_comp + YLL
+NoOS_NoSurgery_Die_U= YLL
+NoOS_NoSurgery_Survive_U=YLD_disease + YLL
+NoOS_Managua_Die_U= YLL
+NoOS_M_S_NoComp_U= 0
+NoOS_M_S_C_Minor_U= YLD_disease + YLL
+NoOS_M_S_C_Major_Die_U= YLL
+NoOS_M_S_C_Major_Survive_U=YLD_major_comp + YLL
+NoOS_Disease_Die_U= YLL
+NoOS_Disease_Survive_U= YLD_disease + YLL
+
 
