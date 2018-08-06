@@ -1,23 +1,26 @@
 import DT as DT
-import SimParameters as SP
+#import SimParameters as SP
 import numpy
 from numpy.random import choice
-#import InputData_Condition1 as D
+import random as random
+
+
+# Appendectomy- acute appendicitis
 
 
 # YLL & YLD -> DALY calculation
 K = 0               # modulates age weight inclusion (1 or 0)
 C = 0.1658          # mathematical constant
 r_YLL = 0             # discount rate (0%, 3%, or 6%)
-a_YLL = 55              # age at death (randomize?)
+a_YLL = random.randint(5, 75)              # age at death (randomize?)
 b = 0.04            # parameter from age weighting function (0.04)
 e = 2.72            # natural logarithm root (2.72)
-L_YLL = 78              # life expectancy (randomize for condition or keep constant for country?)
+L_YLL = 75              # life expectancy
 
 r_YLD = 0.03            # discount rate (0%, 3%, or 6%)
 a_YLD = 5              # age at ONSET (randomize?)
-L_YLD = 7              # years lived with disability (randomize for condition or keep constant for country?)
-DW = .78             # disability weight
+L_YLD = a_YLL - a_YLD              # years lived with disability (randomize for condition or keep constant for country?)
+DW = .463             # disability weight
 
 if r_YLL == 0:
     YLL = ((K * C * (e ** (-(b * a_YLL)))) / (b ** 2)) * \
@@ -54,33 +57,34 @@ YLD_disease = 0
 # costs
 ########################################################################################################################
 #OpSmile
-OpSmile_C = 5000
-OS_Access_C = 200
-OS_A_Surgery_C = 700
-OS_A_S_Survive_C = 80
-OS_A_S_S_Comp_C = 2000
-OS_A_S_S_C_Major_C = 5000
-OS_A_NoSurgery_C = 20
-OS_NoAccess_C = 0
-OS_NA_Managua_C = 10000
-OS_NA_M_Survive_C = 300
-OS_NA_M_S_Comp_C = 200
-OS_NA_M_S_C_Major_C = 300
-OS_NA_Disease_C = 20
+OpSmile_C = 5000                    # Cost of Operation Smile Project Implementation
+OS_Access_C = 200                   # Cost of Accessing OpSmile
+OS_A_Surgery_C = 700                # Cost of Accessing OpSmile and having surgery
+OS_A_S_Survive_C = 80               # Cost of surviving surgery
+OS_A_S_S_Comp_C = 2000              # Cost of a complication as the result of surgery
+OS_A_S_S_C_Major_C = 5000           # Cost of a major complication as the result of surgery
+OS_A_NoSurgery_C = 20               # Cost of having access to OpSmile but not having surgery
+OS_NoAccess_C = 0                   # Cost of not having access to OpSmile
+OS_NA_Managua_C = 10000             # Cost of traveling to Managua for care when there is no OpSmile access
+OS_NA_M_Survive_C = 300             # Cost of surviving surgery in Managua
+OS_NA_M_S_Comp_C = 200              # Cost of a complication from surgery in Managua
+OS_NA_M_S_C_Major_C = 300           # Cost of a major complication from surgery in Managua
+OS_NA_Disease_C = 20                # Cost of not having access to OpSmile, not traveling to Managua, living with disease
 #NoOpSmile
-NoOS_C = 10
-NoOS_Access_C = 10
-NoOS_A_Surgery_C = 10
-NoOS_A_S_Survive_C = 80
-NoOS_A_S_S_Comp_C = 2000
-NoOS_A_S_S_C_Major_C = 5000
-NoOS_A_NoSurgery_C = 10
-NoOS_NoAccess_C = 10
-NoOS_NA_Managua_C = 10
-NoOS_NA_M_Survive_C = 300
-NoOS_NA_M_S_Comp_C = 200
-NoOS_NA_M_S_C_Major_C = 300
-NoOS_NA_Disease_C = 20
+NoOS_C = 10                         # Cost of No Operation Smile Project Implementation
+NoOS_Access_C = 10                  # Cost of NoOpSmile Access to local surgery
+NoOS_A_Surgery_C = 10               # Cost of local surgery
+NoOS_A_S_Survive_C = 80             # Cost of surviving local surgery
+NoOS_A_S_S_Comp_C = 2000            # Cost of a complication from local surgery
+NoOS_A_S_S_C_Major_C = 5000         # Cost of a major complication from local surgery
+NoOS_A_NoSurgery_C = 10             # Cost of access to local surgery but not having surgery
+NoOS_NoAccess_C = 10                # Cost of no access to local surgery
+NoOS_NA_Managua_C = 10              # Cost of traveling to Managua for care when there is no access to local surgery
+NoOS_NA_M_Survive_C = 300           # Cost of surviving surgery in Managua
+NoOS_NA_M_S_Comp_C = 200            # Cost of surgical complication in Managua
+NoOS_NA_M_S_C_Major_C = 300         # Cost of a major complication in Managua
+NoOS_NA_Disease_C = 20              # Cost of no local surgery access, no Managua, living with disease
+
 ########################################################################################################################
 # utilities
 ########################################################################################################################

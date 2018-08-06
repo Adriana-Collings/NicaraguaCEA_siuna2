@@ -4,8 +4,7 @@ import numpy
 from numpy.random import choice
 import random as random
 
-# Caesarean section -obstructed labor
-
+# #Salpingectomy -ectopic pregnancy
 
 # YLL & YLD -> DALY calculation
 K = 0               # modulates age weight inclusion (1 or 0)
@@ -18,8 +17,8 @@ L_YLL = 75              # life expectancy
 
 r_YLD = 0.03            # discount rate (0%, 3%, or 6%)
 a_YLD = 55              # age at ONSET (randomize?)
-L_YLD = a_YLL - a_YLD             # years lived with disability (randomize for condition or keep constant for country?)
-DW = .349             # disability weight
+L_YLD = a_YLL - a_YLD              # years lived with disability (randomize for condition or keep constant for country?)
+DW = .549             # disability weight
 
 if r_YLL == 0:
     YLL = ((K * C * (e ** (-(b * a_YLL)))) / (b ** 2)) * \
@@ -43,9 +42,9 @@ if r_YLD != 0:
           (((1 - K) / r_YLD) * (1 - e ** (-r_YLD * L_YLD)))
 
 # for now
-YLD_major_comp = 5000
-YLD_minor_comp = 10
-YLD_disease = 0
+YLD_major_comp = 30
+YLD_minor_comp = 20
+YLD_disease = 10
 
 
 ########################################################################################################################
@@ -56,33 +55,35 @@ YLD_disease = 0
 # costs
 ########################################################################################################################
 #OpSmile
-OpSmile_C = 5000
-OS_Access_C = 200
-OS_A_Surgery_C = 700
-OS_A_S_Survive_C = 80
-OS_A_S_S_Comp_C = 2000
-OS_A_S_S_C_Major_C = 5000
-OS_A_NoSurgery_C = 20
+OpSmile_C = 20000
+OS_Access_C = 0
+OS_A_Surgery_C = 9719
+OS_A_S_Survive_C = 0
+OS_A_S_S_Comp_C = 0
+OS_A_S_S_C_Major_C = 500
+OS_A_NoSurgery_C = 0
 OS_NoAccess_C = 0
 OS_NA_Managua_C = 10000
-OS_NA_M_Survive_C = 300
-OS_NA_M_S_Comp_C = 200
+OS_NA_M_Survive_C = 0
+OS_NA_M_S_Comp_C = 0
 OS_NA_M_S_C_Major_C = 300
-OS_NA_Disease_C = 20
-#NoOpSmile
-NoOS_C = 10
-NoOS_Access_C = 10
-NoOS_A_Surgery_C = 10
-NoOS_A_S_Survive_C = 80
-NoOS_A_S_S_Comp_C = 2000
+OS_NA_Disease_C = 0
+
+# NoOpSmile
+NoOS_C = 0
+NoOS_Access_C = 0
+NoOS_A_Surgery_C = 9719
+NoOS_A_S_Survive_C = 0
+NoOS_A_S_S_Comp_C = 0
 NoOS_A_S_S_C_Major_C = 5000
-NoOS_A_NoSurgery_C = 10
-NoOS_NoAccess_C = 10
-NoOS_NA_Managua_C = 10
-NoOS_NA_M_Survive_C = 300
-NoOS_NA_M_S_Comp_C = 200
+NoOS_A_NoSurgery_C = 0
+NoOS_NoAccess_C = 0
+NoOS_NA_Managua_C = 10000
+NoOS_NA_M_Survive_C = 0
+NoOS_NA_M_S_Comp_C = 0
 NoOS_NA_M_S_C_Major_C = 300
-NoOS_NA_Disease_C = 20
+NoOS_NA_Disease_C = 0
+
 ########################################################################################################################
 # utilities
 ########################################################################################################################
@@ -158,34 +159,34 @@ PR_NoOS_NA_D_Die = .57
 # costs
 ########################################################################################################################
 #OpSmile
-OS_S_Die_C = 100
-OS_S_S_NoComp_C = 100
+OS_S_Die_C = 0
+OS_S_S_NoComp_C = 0
 OS_S_S_Minor_C = 100
-OS_S_S_C_Major_Die_C = 100
-OS_S_S_C_Major_Survive_C = 100
-OS_NoSurgery_Die_C = 100
+OS_S_S_C_Major_Die_C = 0
+OS_S_S_C_Major_Survive_C = 300
+OS_NoSurgery_Die_C = 0
 OS_NoSurgery_Survive_C = 100
-OS_Managua_Die_C = 100
-OS_M_S_NoComp_C = 100
+OS_Managua_Die_C = 0
+OS_M_S_NoComp_C = 0
 OS_M_S_C_Minor_C = 100
-OS_M_S_C_Major_Die_C = 100
-OS_M_S_C_Major_Survive_C = 100
-OS_Disease_Die_C = 100
+OS_M_S_C_Major_Die_C = 0
+OS_M_S_C_Major_Survive_C = 1000
+OS_Disease_Die_C = 0
 OS_Disease_Survive_C = 100
 # NoOpSmile
-NoOS_S_Die_C = 100
-NoOS_S_S_NoComp_C = 100
+NoOS_S_Die_C = 0
+NoOS_S_S_NoComp_C = 0
 NoOS_S_S_Minor_C = 100
 NoOS_S_S_C_Major_Die_C = 0
-NoOS_S_S_C_Major_Survive_C = 100
-NoOS_NoSurgery_Die_C = 100
+NoOS_S_S_C_Major_Survive_C = 300
+NoOS_NoSurgery_Die_C = 0
 NoOS_NoSurgery_Survive_C = 100
-NoOS_Managua_Die_C = 100
-NoOS_M_S_NoComp_C = 100
+NoOS_Managua_Die_C = 0
+NoOS_M_S_NoComp_C = 0
 NoOS_M_S_C_Minor_C = 100
-NoOS_M_S_C_Major_Die_C = 100
-NoOS_M_S_C_Major_Survive_C = 100
-NoOS_Disease_Die_C = 100
+NoOS_M_S_C_Major_Die_C = 0
+NoOS_M_S_C_Major_Survive_C = 1000
+NoOS_Disease_Die_C = 0
 NoOS_Disease_Survive_C = 100
 
 ########################################################################################################################
@@ -318,6 +319,7 @@ dictTerminal_NoOS = {
     'NoOS_Disease_Die': [NoOS_Disease_Die_C, NoOS_Disease_Die_U],
     'NoOS_Disease_Survive': [NoOS_Disease_Survive_C, NoOS_Disease_Survive_U]
 }
+
 
 DALY_OS=((((((((((YLD_major_comp*(1-PR_OS_S_S_C_Major_Die)+((YLL+YLD_major_comp)*PR_OS_S_S_C_Major_Die))*
     PR_OS_S_S_C_Major)+((1-PR_OS_S_S_C_Major)*YLD_major_comp))*PR_OS_S_S_Comp)+

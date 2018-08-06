@@ -2,7 +2,7 @@ import numpy as np
 from scipy.stats import expon
 import scr.SamplePathClasses as PathCls
 import scr.StatisticalClasses as Stat
-import Surgeries as S
+
 
 
 class Patient:
@@ -325,6 +325,3 @@ class CohortOutcomes:
                                                                                get_count_nonsurgeon_major_complication_survive)
 
 
-# now you have to figure out how to make all this stuff print
-# for some reason your final project code isnt the most recent version and its not printing what its suppossed to
-# whyyyyyyyyyyyyyyyyyyyyyyyyyyyy
