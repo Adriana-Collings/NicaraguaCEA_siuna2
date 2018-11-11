@@ -8,7 +8,7 @@ import distributions as dist
 import probabilities as PR
 import costs as Co
 
-# Appendicitis
+# fracture: face
 
 # YLL & YLD -> DALY calculation
 K = 0               # modulates age weight inclusion (1 or 0)
@@ -20,10 +20,9 @@ e = 2.72            # natural logarithm root (2.72)
 L_YLL = 75              # life expectancy
 
 r_YLD = 0.03            # discount rate (0%, 3%, or 6%)
-a_YLD = 55              # age at ONSET (randomize?)
-L_YLD = dist.Age_appen             # years lived with disability (randomize for condition or keep constant for country?)
-DW = DWpy.DW_appen            # disability weight
-
+a_YLD = dist.Age_fx_face             # age at ONSET (randomize?)
+L_YLD = a_YLL - a_YLD              # years lived with disability (randomize for condition or keep constant for country?)
+DW = DWpy.DW_fx_face
 if r_YLL == 0:
     YLL = ((K * C * (e ** (-(b * a_YLL)))) / (b ** 2)) * \
           (e ** (-b * L_YLL) * (-b * (L_YLL + a_YLL) - 1) * ((-b * a_YLL) - 1)) + ((1 - K) * L_YLL)
@@ -51,10 +50,10 @@ YLD_disease = YLD
 # probabilities
 ########################################################################################################################
 ########################################################################################################################
-PR_OS_Surgery = PR.append_os_s
+PR_OS_Surgery = PR.injury_os_s
 PR_OS_NoSurgery = 1-PR_OS_Surgery
 
-PR_NoOS_Surgery = PR.append_noos_s
+PR_NoOS_Surgery = PR.injury_noos_s
 PR_NoOS_NoSurgery = 1-PR_NoOS_Surgery
 ########################################################################################################################
 DALY = (YLD_disease*DW)
@@ -99,5 +98,6 @@ dictTerminal_OS = {'OS_Surgery': [OS_Surgery_C, OS_Surgery_U],
 
 dictTerminal_NoOS = {'NoOS_Surgery': [NoOS_Surgery_C, NoOS_Surgery_U],
                    'NoOS_NoSurgery': [NoOS_NoSurgery_C, NoOS_NoSurgery_U]}
+
 
 
