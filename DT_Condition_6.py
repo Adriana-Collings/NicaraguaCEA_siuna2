@@ -58,7 +58,6 @@ PR_NoOS_Surgery = PR.diab_noos_s
 PR_NoOS_NoSurgery = 1-PR_NoOS_Surgery
 ########################################################################################################################
 DALY = (YLD_disease*DW)
-print(DALY)
 
 def get_DALY(self):
     return DALY
@@ -88,8 +87,8 @@ NoOS_NoSurgery_U = DALY
 
 # dictionary for decision nodes
 #               // key: cost, utility, [future nodes]
-dictDecisions_OS = {'d1': [5, 5, ['OpSmile', 'toss']]}
-dictDecisions_NoOS = {'d2': [5, 5, ['NoOS', 'toss2']]}
+dictDecisions_OS = {'d1': [Co.OpSmile_C  , 5, ['OpSmile', 'toss']]}
+dictDecisions_NoOS = {'d2': [Co.NoOS_C , 5, ['NoOS', 'toss2']]}
 
 # dictionary for terminal nodes
 #               //key:           cost, utility
@@ -99,6 +98,3 @@ dictTerminal_OS = {'OS_Surgery': [OS_Surgery_C, OS_Surgery_U],
 
 dictTerminal_NoOS = {'NoOS_Surgery': [NoOS_Surgery_C, NoOS_Surgery_U],
                    'NoOS_NoSurgery': [NoOS_NoSurgery_C, NoOS_NoSurgery_U]}
-
-
-

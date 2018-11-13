@@ -16,163 +16,15 @@ class Patient:
     def __init__(self):
         self._rnd = np.random
         # counts
-        self._count_OS_Access = 0
-        self._count_OS_NoAccess = 0
-        self._count_OS_A_Surgery = 0
-        self._count_OS_A_noSurgery = 0
-        self._count_OS_S_Die = 0
-        self._count_OS_S_Survive = 0
-        self._count_OS_S_S_Comp = 0
-        self._count_OS_S_S_NoComp = 0
-        self._count_OS_S_S_C_Major = 0
-        self._count_OS_S_S_C_Minor = 0
-        self._count_OS_S_S_C_Major_Die = 0
-        self._count_OS_S_S_C_Major_Survive = 0
-        self._count_OS_A_NoSurgery_Die = 0
-        self._count_OS_A_NoSurgery_Survive = 0
-        self._count_OS_Managua = 0
-        self._count_OS_NA_Disease = 0
-        self._count_OS_Disease_Die = 0
-        self._count_OS_Disease_Survive = 0
-        self._count_OS_Managua_Die = 0
-        self._count_OS_Managua_Survive = 0
-        self._count_OS_Managua_Comp = 0
-        self._count_OS_Managua_NoComp = 0
-        self._count_OS_M_S_C_Major = 0
-        self._count_OS_M_S_C_Minor = 0
-        self._count_OS_M_S_C_Major_Die = 0
-        self._count_OS_M_S_C_Major_Survive = 0
-        self._count_NoOS_Access = 0
-        self._count_NoOS_NoAccess = 0
-        self._count_NoOS_A_Surgery = 0
-        self._count_NoOS_A_NoSurgery = 0
-        self._count_NoOS_S_Die = 0
-        self._count_NoOS_S_Survive = 0
-        self._count_NoOS_S_S_comp = 0
-        self._count_NoOS_S_S_NoComp = 0
-        self._count_NoOS_S_S_C_Major = 0
-        self._count_NoOS_S_S_C_Minor = 0
-        self._count_NoOS_S_S_C_M_Die = 0
-        self._count_NoOS_S_S_C_M_Survive = 0
-        self._count_NoOS_NS_Die = 0
-        self._count_NoOS_NS_Survive = 0
-        self._count_NoOS_NA_Managua = 0
-        self._count_NoOS_NA_Disease = 0
-        self._count_NoOS_NA_M_Die = 0
-        self._count_NoOS_NA_M_Survive = 0
-        self._count_NoOS_NA_M_Comp = 0
-        self._count_NoOS_NA_M_NoComp = 0
-        self._count_NoOS_NA_M_Comp_Major = 0
-        self._count_NoOS_NA_M_Comp_Minor = 0
-        self._count_NoOS_NA_M_C_M_Die = 0
-        self._count_NoOS_NA_M_C_M_Survive = 0
-        self._count_NoOS_NA_D_Die = 0
-        self._count_NoOS_NA_D_Survive = 0
+        self._count_OS_S = 0
+        self._count_OS_NS = 0
+        self._count_NoOS_S = 0
+        self._count_NoOS_NS = 0
         # count * cost/utility value
-        self._S_OS_Access_C = 0
-        self._S_OS_Access_U = 0
-        self._S_OS_NoAccess_C = 0
-        self._S_OS_NoAccess_U = 0
-        self._S_OS_A_Surgery_C = 0
-        self._S_OS_A_Surgery_U = 0
-        self._S_OS_A_noSurgery_C = 0
-        self._S_OS_A_noSurgery_U = 0
-        self._S_OS_S_Die_C = 0
-        self._S_OS_S_Die_U = 0
-        self._S_OS_S_Survive_C = 0
-        self._S_OS_S_Survive_U = 0
-        self._S_OS_S_S_Comp_C = 0
-        self._S_OS_S_S_Comp_U = 0
-        self._S_OS_S_S_NoComp_C = 0
-        self._S_OS_S_S_NoComp_U = 0
-        self._S_OS_S_S_C_Major_C = 0
-        self._S_OS_S_S_C_Major_U = 0
-        self._S_OS_S_S_C_Minor_C = 0
-        self._S_OS_S_S_C_Minor_U = 0
-        self._S_OS_S_S_C_Major_Die_C = 0
-        self._S_OS_S_S_C_Major_Die_U = 0
-        self._S_OS_S_S_C_Major_Survive_C = 0
-        self._S_OS_S_S_C_Major_Survive_U = 0
-        self._S_OS_A_NoSurgery_Die_C = 0
-        self._S_OS_A_NoSurgery_Die_U = 0
-        self._S_OS_A_NoSurgery_Survive_C = 0
-        self._S_OS_A_NoSurgery_Survive_U = 0
-        self._S_OS_Managua_C = 0
-        self._S_OS_Managua_U = 0
-        self._S_OS_NA_Disease_C = 0
-        self._S_OS_NA_Disease_U = 0
-        self._S_OS_Disease_Die_C = 0
-        self._S_OS_Disease_Die_U = 0
-        self._S_OS_Disease_Survive_C = 0
-        self._S_OS_Disease_Survive_U = 0
-        self._S_OS_Managua_Die_C = 0
-        self._S_OS_Managua_Die_U = 0
-        self._S_OS_Managua_Survive_C = 0
-        self._S_OS_Managua_Survive_U = 0
-        self._S_OS_Managua_Comp_C = 0
-        self._S_OS_Managua_Comp_U = 0
-        self._S_OS_Managua_NoComp_C = 0
-        self._S_OS_Managua_NoComp_U = 0
-        self._S_OS_M_S_C_Major_C = 0
-        self._S_OS_M_S_C_Major_U = 0
-        self._S_OS_M_S_C_Minor_C = 0
-        self._S_OS_M_S_C_Minor_U = 0
-        self._S_OS_M_S_C_Major_Die_C = 0
-        self._S_OS_M_S_C_Major_Die_U = 0
-        self._S_OS_M_S_C_Major_Survive_C = 0
-        self._S_OS_M_S_C_Major_survive_U = 0
-        self._S_NoOS_Access_C = 0
-        self._S_NoOS_Access_U = 0
-        self._S_NoOS_NoAccess_C = 0
-        self._S_NoOS_NoAccess_U = 0
-        self._S_NoOS_A_Surgery_C = 0
-        self._S_NoOS_A_Surgery_U = 0
-        self._S_NoOS_A_NoSurgery_C = 0
-        self._S_NoOS_A_NoSurgery_U = 0
-        self._S_NoOS_S_Die_C = 0
-        self._S_NoOS_S_Die_U = 0
-        self._S_NoOS_S_Survive_C = 0
-        self._S_NoOS_S_Survive_U = 0
-        self._S_NoOS_S_S_comp_C = 0
-        self._S_NoOS_S_S_comp_U = 0
-        self._S_NoOS_S_S_NoComp_C = 0
-        self._S_NoOS_S_S_NoComp_U = 0
-        self._S_NoOS_S_S_C_Major_C = 0
-        self._S_NoOS_S_S_C_Major_U = 0
-        self._S_NoOS_S_S_C_Minor_C = 0
-        self._S_NoOS_S_S_C_Minor_U = 0
-        self._S_NoOS_S_S_C_M_Die_C = 0
-        self._S_NoOS_S_S_C_M_Die_U = 0
-        self._S_NoOS_S_S_C_M_Survive_C = 0
-        self._S_NoOS_S_S_C_M_Survive_U = 0
-        self._S_NoOS_NS_Die_C = 0
-        self._S_NoOS_NS_Die_U =0
-        self._S_NoOS_NS_Survive_C = 0
-        self._S_NoOS_NS_Survive_U = 0
-        self._S_NoOS_NA_Managua_C = 0
-        self._S_NoOS_NA_Managua_U = 0
-        self._S_NoOS_NA_Disease_C = 0
-        self._S_NoOS_NA_Disease_U = 0
-        self._S_NoOS_NA_M_Die_C = 0
-        self._S_NoOS_NA_M_Die_U = 0
-        self._S_NoOS_NA_M_Survive_C = 0
-        self._S_NoOS_NA_M_Survive_U = 0
-        self._S_NoOS_NA_M_Comp_C = 0
-        self._S_NoOS_NA_M_Comp_U = 0
-        self._S_NoOS_NA_M_NoComp_C = 0
-        self._S_NoOS_NA_M_NoComp_U = 0
-        self._S_NoOS_NA_M_Comp_Major_C = 0
-        self._S_NoOS_NA_M_Comp_Major_U = 0
-        self._S_NoOS_NA_M_Comp_Minor_C = 0
-        self._S_NoOS_NA_M_Comp_Minor_U = 0
-        self._S_NoOS_NA_M_C_M_Die_C = 0
-        self._S_NoOS_NA_M_C_M_Die_U = 0
-        self._S_NoOS_NA_M_C_M_Survive_C = 0
-        self._S_NoOS_NA_M_C_M_Survive_U = 0
-        self._S_NoOS_NA_Disease_Die_C = 0
-        self._S_NoOS_NA_Disease_Die_U = 0
-        self._S_NoOS_NA_D_Survive_C = 0
-        self._S_NoOS_NA_D_Survive_U = 0
+        self._S_OS_S = 0
+        self._S_OS_NS= 0
+        self._S_NoOS_S = 0
+        self._S_NoOS_NS = 0
 
         self._total_OpSmile_costs = 0
         self._total_OpSmile_utilities = 0
@@ -180,14 +32,70 @@ class Patient:
         self._total_NoOpSmile_utilities =0
 
         # dirichlet distribution:
-        probs = np.random.dirichlet(alpha=(0.033, 0.061, 0.056, 0.003, 0.395, 0.009, 0.003, 0.003, 0.006, 0.008, 0.022,
-                                           0.015, 0.003, 0.017, 0.003, 0.003, 0.003, 0.067, 0.003, 0.004, 0.002, 0.027,
-                                           0.005, 0.009, 0.025, 0.048, 0.009, 0.004, 0.012, 0.004, 0.048, 0.004, 0.003,
-                                           0.011, 0.005, 0.005, 0.004, 0.003, 0.02, 0.004), size=None)
+        probs = np.random.dirichlet(alpha=(0.033, # 1
+                                           0.061, # 2
+                                           0.056, # 3
+                                           0.003, # 4
+                                          # 0.395, # 5
+                                           0.009, # 6
+                                           0.003, # 8
+                                           0.003, # 10
+                                           0.006, # 12
+                                           0.008, # 13
+                                           0.022, # 14
+                                          # 0.015, # 16
+                                           0.003, # 17
+                                          # 0.017, # 18
+                                           0.003, # 19
+                                         #  0.003, # 20
+                                         #  0.003, # 22
+                                           0.067, # 24
+                                           0.003, # 25
+                                           0.004, # 28
+                                           0.002, # 30
+                                           0.027, # 32
+                                          # 0.005, # 33
+                                           0.009, # 34
+                                           0.025, # 35
+                                           0.048, # 37
+                                           0.009, # 41
+                                          # 0.004, # 42
+                                           0.012, # 43
+                                          # 0.004, # 44
+                                           0.048, # 45
+                                          # 0.004, # 46
+                                           0.003, # 47
+                                           0.011, # 48
+                                           0.005, # 49
+                                           0.005, # 50
+                                          # 0.004, # 51
+                                           0.003, # 53
+                                          # 0.02, # 54
+                                           0.004 # 59
+                                           ), size=None)
         # the numbers of alpha determine the concentration of the probability for each option
-        conditions_list = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
-                           's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'aa', 'bb', 'cc', 'dd', 'ee', 'ff', 'gg', 'hh', 'ii',
-                           'jj', 'kk', 'll', 'mm', 'nn']  # list of conditions
+        conditions_list = ['a', 'b', 'c', 'd',
+                           #'e',
+                           'f', 'g', 'h', 'i', 'j', 'k',
+                           #'l',
+                           'm',
+                           #'n',
+                           'o',
+                           #'p',
+                           # 'q',
+                           'r', 's', 't', 'u', 'v',
+                           # 'w',
+                           'x', 'y', 'z', 'aa',
+                           # 'bb',
+                           'cc',
+                           #'dd',
+                           'ee',
+                           #'ff',
+                           'gg', 'hh', 'ii', 'jj',
+                           #'kk',
+                           'll',
+                           #'mm',
+                           'nn']  # list of conditions
 # what you are trying to do now is build a function in R that will tell you the concentration of each disease to input above
         self.draw = choice(a=conditions_list, p=probs)                  # drawing a random
 
@@ -200,8 +108,8 @@ class Patient:
             import DT_Condition_3 as D
         if self.draw == 'd':
             import DT_Condition_4 as D
-        if self.draw == 'e':
-            import _DT_Condition_5 as D
+        #if self.draw == 'e':
+        #    import _DT_Condition_5 as D
         if self.draw == 'f':
             import DT_Condition_6 as D
         if self.draw == 'g':
@@ -214,18 +122,18 @@ class Patient:
             import DT_Condition_13 as D
         if self.draw == 'k':
             import DT_Condition_14 as D
-        if self.draw == 'l':
-            import _DT_Condition_16 as D
+        #if self.draw == 'l':
+        #    import _DT_Condition_16 as D
         if self.draw == 'm':
             import DT_Condition_17 as D
-        if self.draw == 'n':
-            import _DT_Condition_18 as D
+        #if self.draw == 'n':
+        #    import _DT_Condition_18 as D
         if self.draw == 'o':
             import DT_Condition_19 as D
-        if self.draw =='p':
-            import _DT_Condition_20 as D
-        if self.draw =='q':
-            import _DT_Condition_22 as D
+        #if self.draw =='p':
+        #    import _DT_Condition_20 as D
+        #if self.draw =='q':
+        #    import _DT_Condition_22 as D
         if self.draw == 'r':
             import DT_Condition_24 as D
         if self.draw == 's':
@@ -236,8 +144,8 @@ class Patient:
             import DT_Condition_30 as D
         if self.draw == 'v':
             import DT_Condition_32 as D
-        if self.draw == 'w':
-            import _DT_Condition_33 as D
+        #if self.draw == 'w':
+        #    import _DT_Condition_33 as D
         if self.draw == 'x':
             import DT_Condition_34 as D
         if self.draw == 'y':
@@ -246,16 +154,16 @@ class Patient:
             import DT_Condition_37 as D
         if self.draw == 'aa':
             import DT_Condition_41 as D
-        if self.draw == 'bb':
-            import _DT_Condition_42 as D
+        #if self.draw == 'bb':
+        #    import _DT_Condition_42 as D
         if self.draw == 'cc':
             import DT_Condition_43 as D
-        if self.draw == 'dd':
-            import _DT_Condition_44 as D
+        #if self.draw == 'dd':
+        #    import _DT_Condition_44 as D
         if self.draw == 'ee':
             import DT_Condition_45 as D
-        if self.draw == 'ff':
-            import _DT_Condition_46 as D
+        #if self.draw == 'ff':
+        #    import _DT_Condition_46 as D
         if self.draw == 'gg':
             import DT_Condition_47 as D
         if self.draw == 'hh':
@@ -264,410 +172,51 @@ class Patient:
             import DT_Condition_49 as D
         if self.draw == 'jj':
             import DT_Condition_50 as D
-        if self.draw =='kk':
-            import _DT_Condition_51 as D
+        #if self.draw =='kk':
+        #    import _DT_Condition_51 as D
         if self.draw =='ll':
             import DT_Condition_53 as D
-        if self.draw == 'mm':
-            import _DT_Condition_54 as D
+        #if self.draw == 'mm':
+        #    import _DT_Condition_54 as D
         if self.draw == 'nn':
             import DT_Condition_59 as D
 
-
         t = 0
         z = 0
-        # OpSmile
-        # randomizes patients into Access or No Access/ Managua
-        for i in range(n_of_patients):
-            if self._rnd.random_sample() < D.PR_OS_Access:
-                self._count_OS_Access += 1  # count patients who go to access
-            else:
-                self._count_OS_NoAccess += 1  # count patients who go to no access
-            t += 1
 
         # for those counts, you randomize them further
-        # access -> surgery or no surgery
-        for i in range(self._count_OS_Access):
-            if self._rnd.random_sample() < D.PR_OS_A_Surgery:
-                self._count_OS_A_Surgery += 1
-            else:
-                self._count_OS_A_noSurgery += 1
-
-        # surgery -> survive or die
-        for i in range(self._count_OS_A_Surgery):
-            if self._rnd.random_sample() < D.PR_OS_S_Die:
-                self._count_OS_S_Die += 1
-            else:
-                self._count_OS_S_Survive += 1
-
-        # survive -> complications or no complications
-        for i in range(self._count_OS_S_Survive):
-            if self._rnd.random_sample() < D.PR_OS_S_S_Comp:
-                self._count_OS_S_S_Comp += 1
-            else:
-                self._count_OS_S_S_NoComp += 1
-
-        # complications -> major or minor comp
-        for i in range (self._count_OS_S_S_Comp):
-            if self._rnd.random_sample() < D.PR_OS_S_S_C_Major:
-                self._count_OS_S_S_C_Major += 1
-            else:
-                self._count_OS_S_S_C_Minor += 1
-
-        # major comp ->survive or die
-        for i in range(self._count_OS_S_S_C_Major):
-            if self._rnd.random_sample() <D.PR_OS_S_S_C_Major_Die:
-                self._count_OS_S_S_C_Major_Die += 1
-            else:
-                self._count_OS_S_S_C_Major_Survive += 1
-
-        # no surgery -> survive or die
-        for i in range(self._count_OS_A_noSurgery):
-            if self._rnd.random_sample() < D.PR_OS_A_NoSurgery_Die:
-                self._count_OS_A_NoSurgery_Die += 1
-            else:
-                self._count_OS_A_NoSurgery_Survive += 1
-
-        # no access -> Managua or Disease
-        for i in range(self._count_OS_NoAccess):
-            if self._rnd.random_sample() < D.PR_OS_Managua:
-                self._count_OS_Managua += 1
-            else:
-                self._count_OS_NA_Disease += 1
-
-        # Managua -> Survive or Die
-        for i in range(self._count_OS_Managua):
-            if self._rnd.random_sample() < D.PR_OS_Managua_Die:
-                self._count_OS_Managua_Die += 1
-            else:
-                self._count_OS_Managua_Survive += 1
-
-        # survive -> comp or no comp
-        for i in range(self._count_OS_Managua_Survive):
-            if self._rnd.random_sample() < D.PR_OS_M_S_Comp:
-                self._count_OS_Managua_Comp += 1
-            else:
-                self._count_OS_Managua_NoComp += 1
-
-        # comp -> major or minor comp
-        for i in range(self._count_OS_Managua_Comp):
-            if self._rnd.random_sample() < D.PR_OS_M_S_C_Major:
-                self._count_OS_M_S_C_Major += 1
-            else:
-                self._count_OS_M_S_C_Minor += 1
-
-        # Major comp -> survive or die
-        for i in range(self._count_OS_M_S_C_Major):
-            if self._rnd.random_sample() < D.PR_OS_M_S_C_Major_Die:
-                self._count_OS_M_S_C_Major_Die += 1
-            else:
-                self._count_OS_M_S_C_Major_Survive += 1
-
-        # Disease -> Survive or Die
-        for i in range(self._count_OS_NA_Disease):
-            if self._rnd.random_sample() < D.PR_OS_Disease_Die:
-                self._count_OS_Disease_Die += 1
-            else:
-                self._count_OS_Disease_Survive += 1
-
-        # NoOpSmile
-        # Access or no access
-        #while z < n_of_days:
         for i in range(n_of_patients):
-            if self._rnd.random_sample() < D.PR_NoOS_Access:
-                self._count_NoOS_Access += 1
+            if self._rnd.random_sample() < D.PR_OS_Surgery:
+                self._count_OS_NS += 1
             else:
-                self._count_NoOS_NoAccess += 1
-            z += 1
+                self._count_OS_S += 1
 
-        # Access -> Surgery or no surgery
-        for i in range(self._count_NoOS_Access):
-            if self._rnd.random_sample() < D.PR_NoOS_A_Surgery:
-                self._count_NoOS_A_Surgery += 1
+        for i in range(n_of_patients):
+            if self._rnd.random_sample() < D.PR_NoOS_Surgery:
+                self._count_NoOS_NS += 1
             else:
-                self._count_NoOS_A_NoSurgery += 1
-
-        # surgery -> survive or die
-        for i in range(self._count_NoOS_A_Surgery):
-            if self._rnd.random_sample() < D.PR_NoOS_S_Die:
-                self._count_NoOS_S_Die += 1
-            else:
-                self._count_NoOS_S_Survive += 1
-
-        # survive -> comp or no comp
-        for i in range(self._count_NoOS_S_Survive):
-            if self._rnd.random_sample() < D.PR_NoOS_S_S_Comp:
-                self._count_NoOS_S_S_comp += 1
-            else:
-                self._count_NoOS_S_S_NoComp += 1
-
-        # comp -> minor or major
-        for i in range(self._count_NoOS_S_S_comp):
-            if self._rnd.random_sample() < D.PR_NoOS_S_S_C_Major:
-                self._count_NoOS_S_S_C_Major += 1
-            else:
-                self._count_NoOS_S_S_C_Minor += 1
-
-        # major -> survive or die
-        for i in range(self._count_NoOS_S_S_C_Major):
-            if self._rnd.random_sample() < D.PR_NoOS_S_S_C_M_Die:
-                self._count_NoOS_S_S_C_M_Die += 1
-            else:
-                self._count_NoOS_S_S_C_M_Survive += 1
-
-        # No surgery -> survive or die
-        for i in range(self._count_NoOS_A_NoSurgery):
-            if self._rnd.random_sample() < D.PR_NoOS_NS_Die:
-                self._count_NoOS_NS_Die += 1
-            else:
-                self._count_NoOS_NS_Survive += 1
-
-        # No access -> Managua or disease
-        for i in range(self._count_NoOS_NoAccess):
-            if self._rnd.random_sample() < D.PR_NoOS_NA_Managua:
-                self._count_NoOS_NA_Managua += 1
-            else:
-                self._count_NoOS_NA_Disease += 1
-
-        # Managua -> survive or die
-        for i in range(self._count_NoOS_NA_Managua):
-            if self._rnd.random_sample() < D.PR_NoOS_NA_M_Die:
-                self._count_NoOS_NA_M_Die += 1
-            else:
-                self._count_NoOS_NA_M_Survive += 1
-
-        # survive -> comp or no comp
-        for i in range(self._count_NoOS_NA_M_Survive):
-            if self._rnd.random_sample() < D.PR_NoOS_NA_M_Comp:
-                self._count_NoOS_NA_M_Comp += 1
-            else:
-                self._count_NoOS_NA_M_NoComp += 1
-
-        # comp -> major or minor
-        for i in range(self._count_NoOS_NA_M_Comp):
-            if self._rnd.random_sample() < D.PR_NoOS_NA_M_Comp_Major:
-                self._count_NoOS_NA_M_Comp_Major += 1
-            else:
-                self._count_NoOS_NA_M_Comp_Minor += 1
-
-        # major -> survive or die
-        for i in range(self._count_NoOS_NA_M_Comp_Major):
-            if self._rnd.random_sample() < D.PR_NoOS_NA_M_C_M_Die:
-                self._count_NoOS_NA_M_C_M_Die += 1
-            else:
-                self._count_NoOS_NA_M_C_M_Survive += 1
-
-        # disease -> survive or die
-        for i in range(self._count_NoOS_NA_Disease):
-            if self._rnd.random_sample() < D.PR_NoOS_NA_D_Die:
-                self._count_NoOS_NA_D_Die += 1
-            else:
-                self._count_NoOS_NA_D_Survive += 1
+                self._count_NoOS_S += 1
 
         # multiply counts by cost and utilities and return total
-        self._S_OS_A_Surgery_C = self._count_OS_A_Surgery * D.OS_A_Surgery_C
-        self._S_OS_A_Surgery_U = self._count_OS_A_Surgery * D.OS_A_Surgery_U
+        self._S_OS_S_C = self._count_OS_S * D.OS_Surgery_C
+        self._S_OS_S_U = self._count_OS_S * D.OS_Surgery_U
 
-        self._S_OS_A_noSurgery_C = self._count_OS_A_noSurgery * D.OS_A_NoSurgery_C
-        self._S_OS_A_noSurgery_U = self._count_OS_A_noSurgery * D.OS_A_NoSurgery_U
+        self._S_OS_NS_C = self._count_OS_NS * D.OS_NoSurgery_C
+        self._S_OS_NS_U = self._count_OS_NS * D.OS_NoSurgery_U
 
-        self._S_OS_NoAccess_U = self._count_OS_NoAccess * D.OS_NoAccess_U
-        self._S_OS_NoAccess_C = self._count_OS_NoAccess * D.OS_NoAccess_C
+        self._S_NoOS_S_C = self._count_NoOS_S * D.NoOS_Surgery_C
+        self._S_NoOS_S_U = self._count_NoOS_S * D.NoOS_Surgery_U
 
-        self._S_OS_Access_U = self._count_OS_Access * D.OS_Access_U
-        self._S_OS_Access_C = self._count_OS_Access * D.OS_Access_C
+        self._S_NoOS_NS_C = self._count_NoOS_NS * D.NoOS_NoSurgery_C
+        self._S_NoOS_NS_U = self._count_NoOS_NS * D.NoOS_NoSurgery_U
 
-        self._S_OS_S_Die_C = self._count_OS_S_Die * D.OS_S_Die_C
-        self._S_OS_S_Die_U = self._count_OS_S_Die * D.OS_S_Die_U
+        self._total_OpSmile_costs = self._S_OS_S_C + self._S_OS_NS_C
 
-        self._S_OS_S_Survive_C = self._count_OS_S_Survive * D.OS_A_S_Survive_C
-        self._S_OS_S_Survive_U = self._count_OS_S_Survive * D.OS_A_S_Survive_U
+        self._total_OpSmile_utilities = self._S_OS_S_U + self._S_OS_NS_U
 
-        self._S_OS_S_Comp_C = self._count_OS_S_S_Comp * D.OS_A_S_S_Comp_C
-        self._S_OS_S_Comp_U = self._count_OS_S_S_Comp * D.OS_A_S_S_Comp_U
+        self._total_NoOpSmile_costs = self._S_NoOS_S_C + self._S_NoOS_NS_C
 
-        self._S_OS_S_S_NoComp_C = self._count_OS_S_S_NoComp * D.OS_S_S_NoComp_C
-        self._S_OS_S_S_NoComp_U = self._count_OS_S_S_NoComp * D.OS_S_S_NoComp_U
-
-        self._S_OS_S_S_C_Major_C = self._count_OS_S_S_C_Major * D.OS_A_S_S_C_Major_C
-        self._S_OS_S_S_C_Major_U = self._count_OS_S_S_C_Major * D.OS_A_S_S_C_Major_U
-
-        self._S_OS_S_S_C_Minor_C = self._count_OS_S_S_C_Minor * D.OS_S_S_Minor_C
-        self._S_OS_S_S_C_Minor_U = self._count_OS_S_S_C_Minor * D.OS_S_S_Minor_U
-
-        self._S_OS_S_S_C_Major_Die_C = self._count_OS_S_S_C_Major_Die * D.OS_S_S_C_Major_Die_C
-        self._S_OS_S_S_C_Major_Die_U = self._count_OS_S_S_C_Major_Die * D.OS_S_S_C_Major_Die_U
-
-        self._S_OS_S_S_C_Major_Survive_C = self._count_OS_S_S_C_Major_Survive * D.OS_S_S_C_Major_Survive_C
-        self._S_OS_S_S_C_Major_Survive_U = self._count_OS_S_S_C_Major_Survive * D.OS_S_S_C_Major_Survive_U
-
-        self._S_OS_A_NoSurgery_Die_C = self._count_OS_A_NoSurgery_Die * D.OS_NoSurgery_Die_C
-        self._S_OS_A_NoSurgery_Die_U = self._count_OS_A_NoSurgery_Die * D.OS_NoSurgery_Die_U
-
-        self._S_OS_A_NoSurgery_Survive_C = self._count_OS_A_NoSurgery_Survive * D.OS_NoSurgery_Survive_C
-        self._S_OS_A_NoSurgery_Survive_U = self._count_OS_A_NoSurgery_Survive * D.OS_NoSurgery_Survive_U
-
-        self._S_OS_Managua_C = self._count_OS_Managua * D.OS_NA_Managua_C
-        self._S_OS_Managua_U = self._count_OS_Managua * D.OS_NA_Managua_U
-
-        self._S_OS_NA_Disease_C = self._count_OS_NA_Disease * D.OS_NA_Disease_C
-        self._S_OS_NA_Disease_U = self._count_OS_NA_Disease * D.OS_NA_Disease_U
-
-        self._S_OS_Disease_Survive_C = self._count_OS_Disease_Survive * D.OS_Disease_Survive_C
-        self._S_OS_Disease_Survive_U = self._count_OS_Disease_Survive * D.OS_Disease_Survive_U
-
-        self._S_OS_Managua_Die_C = self._count_OS_Managua_Die * D.OS_Managua_Die_C
-        self._S_OS_Managua_Die_U = self._count_OS_Managua_Die * D.OS_Managua_Die_U
-
-        self._S_OS_Managua_Survive_C = self._count_OS_Managua_Survive * D.OS_NA_M_Survive_C
-        self._S_OS_Managua_survive_U = self._count_OS_Managua_Survive * D.OS_NA_M_Survive_U
-
-        self._S_OS_Managua_Comp_C = self._count_OS_Managua_Comp * D.OS_NA_M_S_Comp_C
-        self._S_OS_Managua_Comp_U = self._count_OS_Managua_Comp * D.OS_NA_M_S_Comp_U
-
-        self._S_OS_Managua_NoComp_C = self._count_OS_Managua_NoComp * D.OS_M_S_NoComp_C
-        self._S_OS_Managua_NoComp_U = self._count_OS_Managua_NoComp * D.OS_M_S_NoComp_U
-
-        self._S_OS_M_S_C_Major_C = self._count_OS_M_S_C_Major * D.OS_NA_M_S_C_Major_C
-        self._S_OS_M_S_C_Major_U = self._count_OS_M_S_C_Major * D.OS_NA_M_S_C_Major_U
-
-        self._S_OS_M_S_C_Minor_C = self._count_OS_M_S_C_Minor * D.OS_M_S_C_Minor_C
-        self._S_OS_M_S_C_Minor_U = self._count_OS_M_S_C_Minor * D.OS_M_S_C_Minor_U
-
-        self._S_OS_M_S_C_Major_Die_C = self._count_OS_M_S_C_Major_Die * D.OS_M_S_C_Major_Die_C
-        self._S_OS_M_S_C_Major_Die_U = self._count_OS_M_S_C_Major_Die * D.OS_M_S_C_Major_Die_U
-
-        self._S_OS_M_S_C_Major_Survive_C = self._count_OS_M_S_C_Major_Survive * D.OS_M_S_C_Major_Survive_C
-        self._S_OS_M_S_C_Major_survive_U = self._count_OS_M_S_C_Major_Survive * D.OS_M_S_C_Major_Survive_U
-
-        self._S_NoOS_Access_C = self._count_NoOS_Access * D.NoOS_Access_C
-        self._S_NoOS_Access_U = self._count_NoOS_Access * D.NoOS_Access_U
-
-        self._S_NoOS_NoAccess_C = self._count_NoOS_NoAccess * D.NoOS_NoAccess_C
-        self._S_NoOS_NoAccess_U = self._count_NoOS_NoAccess * D.NoOS_NoAccess_U
-
-        self._S_NoOS_A_Surgery_C = self._count_NoOS_A_Surgery * D.NoOS_A_Surgery_C
-        self._S_NoOS_A_Surgery_U = self._count_NoOS_A_Surgery * D.NoOS_A_Surgery_U
-
-        self._S_NoOS_NS_Survive_C = self._count_NoOS_NS_Survive * D.NoOS_NoSurgery_Survive_C
-        self._S_NoOS_NS_Survive_U = self._count_NoOS_NS_Survive * D.NoOS_NoSurgery_Survive_U
-
-        self._S_NoOS_A_NoSurgery_C = self._count_NoOS_A_NoSurgery * D.NoOS_A_NoSurgery_C
-        self._S_NoOS_A_NoSurgery_U = self._count_NoOS_A_NoSurgery * D.NoOS_A_NoSurgery_U
-
-        self._S_NoOS_S_Die_C = self._count_NoOS_S_Die * D.NoOS_S_Die_C
-        self._S_NoOS_S_Die_U = self._count_NoOS_S_Die * D.NoOS_S_Die_U
-
-        self._S_NoOS_S_Survive_C = self._count_NoOS_S_Survive * D.NoOS_A_S_Survive_C
-        self._S_NoOS_S_Survive_U = self._count_NoOS_S_Survive * D.NoOS_A_S_Survive_U
-
-        self._S_NoOS_S_S_comp_C = self._count_NoOS_S_S_comp * D.NoOS_A_S_S_Comp_C
-        self._S_NoOS_S_S_comp_U = self._count_NoOS_S_S_comp * D.NoOS_A_S_S_Comp_U
-
-        self._S_NoOS_S_S_NoComp_C = self._count_NoOS_S_S_NoComp * D.NoOS_S_S_NoComp_C
-        self._S_NoOS_S_S_NoComp_U = self._count_NoOS_S_S_NoComp * D.NoOS_S_S_NoComp_U
-
-        self._S_NoOS_S_S_C_Major_C = self._count_NoOS_S_S_C_Major * D.NoOS_A_S_S_C_Major_C
-        self._S_NoOS_S_S_C_Major_U = self._count_NoOS_S_S_C_Major * D.NoOS_A_S_S_C_Major_U
-
-        self._S_NoOS_S_S_C_Minor_C = self._count_NoOS_S_S_C_Minor * D.NoOS_S_S_Minor_C
-        self._S_NoOS_S_S_C_Minor_U = self._count_NoOS_S_S_C_Minor * D.NoOS_S_S_Minor_U
-
-        self._S_NoOS_S_S_C_M_Die_C = self._count_NoOS_S_S_C_M_Die * D.NoOS_S_S_C_Major_Die_C
-        self._S_NoOS_S_S_C_M_Die_U = self._count_NoOS_S_S_C_M_Die * D.NoOS_S_S_C_Major_Die_U
-
-        self._S_NoOS_S_S_C_M_Survive_C = self._count_NoOS_S_S_C_M_Survive * D.NoOS_S_S_C_Major_Survive_C
-        self._S_NoOS_S_S_C_M_Survive_U = self._count_NoOS_S_S_C_M_Survive * D.NoOS_S_S_C_Major_Survive_U
-
-        self._S_NoOS_NS_Die_C = self._count_NoOS_NS_Die * D.NoOS_NoSurgery_Die_C
-        self._S_NoOS_NS_Die_U = self._count_NoOS_NS_Die * D.NoOS_NoSurgery_Die_U
-
-        self._S_NoOS_NA_Survive_C = self._count_NoOS_NS_Survive * D.NoOS_NoSurgery_Survive_C
-        self._S_NoOS_NA_Survive_U = self._count_NoOS_NS_Survive * D.NoOS_NoSurgery_Survive_U
-
-        self._S_NoOS_NA_Managua_C = self._count_NoOS_NA_Managua * D.NoOS_NA_Managua_C
-        self._S_NoOS_NA_Managua_U = self._count_NoOS_NA_Managua * D.NoOS_NA_Managua_U
-
-        self._S_NoOS_NA_Disease_C = self._count_NoOS_NA_Disease * D.NoOS_NA_Disease_C
-        self._S_NoOS_NA_Disease_U = self._count_NoOS_NA_Disease * D.NoOS_NA_Disease_U
-
-        self._S_NoOS_NA_M_Die_C = self._count_NoOS_NA_M_Die * D.NoOS_Managua_Die_C
-        self._S_NoOS_NA_M_Die_U = self._count_NoOS_NA_M_Die * D.NoOS_Managua_Die_U
-
-        self._S_NoOS_NA_M_Survive_C = self._count_NoOS_NA_M_Survive * D.NoOS_NA_M_Survive_C
-        self._S_NoOS_NA_M_Survive_U = self._count_NoOS_NA_M_Survive * D.NoOS_NA_M_Survive_U
-
-        self._S_NoOS_NA_M_Comp_C = self._count_NoOS_NA_M_Comp * D.NoOS_NA_M_S_Comp_C
-        self._S_NoOS_NA_M_Comp_U = self._count_NoOS_NA_M_Comp * D.NoOS_NA_M_S_Comp_U
-
-        self._S_NoOS_NA_M_NoComp_C = self._count_NoOS_NA_M_NoComp * D.NoOS_M_S_NoComp_C
-        self._S_NoOS_NA_M_NoComp_U = self._count_NoOS_NA_M_NoComp * D.NoOS_M_S_NoComp_U
-
-        self._S_NoOS_NA_M_Comp_Major_C = self._count_NoOS_NA_M_Comp_Major * D.NoOS_NA_M_S_C_Major_C
-        self._S_NoOS_NA_M_Comp_Major_U = self._count_NoOS_NA_M_Comp_Major * D.NoOS_NA_M_S_C_Major_U
-
-        self._S_NoOS_NA_M_Comp_Minor_C = self._count_NoOS_NA_M_Comp_Minor * D.NoOS_M_S_C_Minor_C
-        self._S_NoOS_NA_M_Comp_Minor_U = self._count_NoOS_NA_M_Comp_Minor * D.NoOS_M_S_C_Minor_U
-
-        self._S_NoOS_NA_M_C_M_Die_C = self._count_NoOS_NA_M_C_M_Die * D.NoOS_M_S_C_Major_Die_C
-        self._S_NoOS_NA_M_C_M_Die_U = self._count_NoOS_NA_M_C_M_Die * D.NoOS_M_S_C_Major_Die_U
-
-        self._S_NoOS_NA_M_C_M_Survive_C = self._count_NoOS_NA_M_C_M_Survive * D.NoOS_M_S_C_Major_Survive_C
-        self._S_NoOS_NA_M_C_M_Survive_U = self._count_NoOS_NA_M_C_M_Survive * D.NoOS_M_S_C_Major_Survive_U
-
-        self._S_NoOS_NA_Disease_Die_C = self._count_NoOS_NA_D_Die * D.NoOS_Disease_Die_C
-        self._S_NoOS_NA_Disease_Die_U = self._count_NoOS_NA_D_Die * D.NoOS_Disease_Die_U
-
-        self._S_NoOS_NA_D_Survive_C = self._count_NoOS_NA_D_Survive * D.NoOS_Disease_Survive_C
-        self._S_NoOS_NA_D_Survive_U = self._count_NoOS_NA_D_Survive * D.NoOS_Disease_Survive_U
-
-        self._total_OpSmile_costs = self._S_OS_Access_C + self._S_OS_NoAccess_C + self._S_OS_A_Surgery_C + \
-                                    self._S_OS_A_noSurgery_C + self._S_OS_S_Die_C + self._S_OS_S_Survive_C + \
-                                    self._S_OS_S_Comp_C + self._S_OS_S_S_NoComp_C + self._S_OS_S_S_C_Major_C + \
-                                    self._S_OS_S_S_C_Minor_C + self._S_OS_S_S_C_Major_Die_C + \
-                                    self._S_OS_A_NoSurgery_Survive_C + self._S_OS_S_S_C_Major_Survive_C + \
-                                    self._S_OS_A_NoSurgery_Die_C + self._S_OS_Managua_C + self._S_OS_NA_Disease_C + \
-                                    self._S_OS_Managua_Die_C + self._S_OS_Managua_Survive_C + self._S_OS_Managua_Comp_C + \
-                                    self._S_OS_Managua_NoComp_C + self._S_OS_M_S_C_Major_C + self._S_OS_M_S_C_Minor_C + \
-                                    self._S_OS_M_S_C_Major_Die_C + self._S_OS_M_S_C_Major_Survive_C + \
-                                    self._S_OS_Disease_Survive_C
-
-        self._total_OpSmile_utilities = self._S_OS_Access_U + self._S_OS_NoAccess_U + self._S_OS_A_Surgery_U + \
-                                        self._S_OS_A_noSurgery_U + self._S_OS_S_Die_U + self._S_OS_S_Survive_U + \
-                                        self._S_OS_S_Comp_U + self._S_OS_S_S_NoComp_U + self._S_OS_S_S_C_Major_U + \
-                                        self._S_OS_S_S_C_Minor_U + self._S_OS_S_S_C_Major_Die_U + \
-                                        self._S_OS_A_NoSurgery_Die_U + self._S_OS_A_NoSurgery_Survive_U + \
-                                        self._S_OS_Managua_U + self._S_OS_NA_Disease_U + self._S_OS_NA_Disease_U + \
-                                        self._S_OS_Managua_Die_U + self._S_OS_Managua_survive_U + self._S_OS_Managua_Comp_U \
-                                        + self._S_OS_Managua_NoComp_U + self._S_OS_M_S_C_Major_U + self._S_OS_M_S_C_Minor_U + \
-                                        self._S_OS_M_S_C_Major_Die_U + self._S_OS_M_S_C_Major_survive_U + \
-                                        self._S_OS_Disease_Survive_U + self._S_NoOS_NA_M_C_M_Survive_U + self._S_NoOS_NA_Disease_Die_U
-
-        self._total_NoOpSmile_costs = self._S_NoOS_Access_C + self._S_NoOS_NoAccess_C + self._S_NoOS_A_Surgery_C + \
-                                      self._S_NoOS_NS_Survive_C + self._S_NoOS_A_NoSurgery_C + self._S_NoOS_S_Die_C + \
-                                      self._S_NoOS_S_Survive_C + self._S_NoOS_S_S_comp_C + self._S_NoOS_S_S_NoComp_C + \
-                                      self._S_NoOS_S_S_C_Major_C + self._S_NoOS_S_S_C_Minor_C + \
-                                      self._S_NoOS_S_S_C_M_Die_C + self._S_NoOS_S_S_C_M_Survive_C + self._S_NoOS_NS_Die_C \
-                                      + self._S_NoOS_NA_Survive_C + self._S_NoOS_NA_Managua_C + self._S_NoOS_NA_Disease_C \
-                                      + self._S_NoOS_NA_M_Die_C + self._S_NoOS_NA_M_Survive_C + self._S_NoOS_NA_M_Comp_C \
-                                      + self._S_NoOS_NA_M_NoComp_C + self._S_NoOS_NA_M_Comp_Major_C + \
-                                      self._S_NoOS_NA_M_Comp_Minor_C + self._S_NoOS_NA_M_C_M_Die_C + \
-                                      self._S_NoOS_NA_M_C_M_Survive_C + self._S_NoOS_NA_Disease_Die_C + \
-                                      self._S_NoOS_NA_D_Survive_C
-
-        self._total_NoOpSmile_utilities = self._S_NoOS_Access_U + self._S_NoOS_NoAccess_U + self._S_NoOS_A_Surgery_U + \
-                                          self._S_NoOS_NS_Survive_U + self._S_NoOS_A_NoSurgery_U + self._S_NoOS_S_Die_U \
-                                          + self._S_NoOS_S_Survive_U + self._S_NoOS_S_S_comp_U + \
-                                          self._S_NoOS_S_S_NoComp_U + self._S_NoOS_S_S_C_Major_U + \
-                                          self._S_NoOS_S_S_C_Minor_U + self._S_NoOS_S_S_C_M_Die_U + \
-                                          self._S_NoOS_S_S_C_M_Survive_U + self._S_NoOS_NS_Die_U + \
-                                          self._S_NoOS_NA_Survive_U + self._S_NoOS_NA_Managua_U + \
-                                          self._S_NoOS_NA_Disease_U + self._S_NoOS_NA_M_Die_U + \
-                                          self._S_NoOS_NA_M_Survive_U + self._S_NoOS_NA_M_Comp_U + \
-                                          self._S_NoOS_NA_M_NoComp_U + self._S_NoOS_NA_M_Comp_Major_U + \
-                                          self._S_NoOS_NA_M_Comp_Minor_U + self._S_NoOS_NA_M_C_M_Die_U + \
-                                          self._S_NoOS_NA_M_C_M_Survive_U + self._S_NoOS_NA_Disease_Die_U + \
-                                          self._S_NoOS_NA_D_Survive_U
+        self._total_NoOpSmile_utilities = self._S_NoOS_S_U + self._S_NoOS_NS_U
 
     def get_OS_cost(self):
         return self._total_OpSmile_costs
@@ -727,11 +276,12 @@ class YearofPatients:
         self._con_nn_patients = []
         # eventually we'll want to add other metrics here. Like how many died, etc.
 
-        self._initial_pop_size=100
+        self._initial_pop_size_pre= 100 #1451
+        self._initial_pop_size_post = 100 #2658
         # fixed internally because we're going to make this number random eventually.
         # Maybe we'll change this later, but this should work for now.
 
-        for i in range(self._initial_pop_size):
+        for i in range(self._initial_pop_size_pre):
             patient = Patient()
             self._patients.append(patient)
             self.draw = patient.draw
@@ -815,6 +365,92 @@ class YearofPatients:
                 self._con_mm_patients.append(patient)
             if self.draw == 'nn':
                 self._con_nn_patients.append(patient)
+
+        for i in range(self._initial_pop_size_post):
+            patient = Patient()
+            self._patients.append(patient)
+            self.draw = patient.draw
+            if self.draw == 'a':
+                self._con_a_patients.append(patient)
+            if self.draw == 'b':
+                self._con_b_patients.append(patient)
+            if self.draw == 'c':
+                self._con_c_patients.append(patient)
+            if self.draw == 'd':
+                self._con_d_patients.append(patient)
+            if self.draw == 'e':
+                self._con_e_patients.append(patient)
+            if self.draw == 'f':
+                self._con_f_patients.append(patient)
+            if self.draw == 'g':
+                self._con_g_patients.append(patient)
+            if self.draw == 'h':
+                self._con_h_patients.append(patient)
+            if self.draw == 'i':
+                self._con_i_patients.append(patient)
+            if self.draw == 'j':
+                self._con_j_patients.append(patient)
+            if self.draw == 'k':
+                self._con_k_patients.append(patient)
+            if self.draw == 'l':
+                self._con_l_patients.append(patient)
+            if self.draw == 'm':
+                self._con_m_patients.append(patient)
+            if self.draw == 'n':
+                self._con_n_patients.append(patient)
+            if self.draw == 'o':
+                self._con_o_patients.append(patient)
+            if self.draw == 'p':
+                self._con_p_patients.append(patient)
+            if self.draw == 'q':
+                self._con_q_patients.append(patient)
+            if self.draw == 'r':
+                self._con_r_patients.append(patient)
+            if self.draw == 's':
+                self._con_s_patients.append(patient)
+            if self.draw == 't':
+                self._con_t_patients.append(patient)
+            if self.draw == 'u':
+                self._con_u_patients.append(patient)
+            if self.draw == 'v':
+                self._con_v_patients.append(patient)
+            if self.draw == 'w':
+                self._con_w_patients.append(patient)
+            if self.draw == 'x':
+                self._con_x_patients.append(patient)
+            if self.draw == 'y':
+                self._con_y_patients.append(patient)
+            if self.draw == 'z':
+                self._con_z_patients.append(patient)
+            if self.draw == 'aa':
+                self._con_aa_patients.append(patient)
+            if self.draw == 'bb':
+                self._con_bb_patients.append(patient)
+            if self.draw == 'cc':
+                self._con_cc_patients.append(patient)
+            if self.draw == 'dd':
+                self._con_dd_patients.append(patient)
+            if self.draw == 'ee':
+                self._con_ee_patients.append(patient)
+            if self.draw == 'f':
+                self._con_ff_patients.append(patient)
+            if self.draw == 'gg':
+                self._con_gg_patients.append(patient)
+            if self.draw == 'hh':
+                self._con_hh_patients.append(patient)
+            if self.draw == 'ii':
+                self._con_ii_patients.append(patient)
+            if self.draw == 'jj':
+                self._con_jj_patients.append(patient)
+            if self.draw == 'kk':
+                self._con_kk_patients.append(patient)
+            if self.draw == 'll':
+                self._con_ll_patients.append(patient)
+            if self.draw == 'mm':
+                self._con_mm_patients.append(patient)
+            if self.draw == 'nn':
+                self._con_nn_patients.append(patient)
+
 
     def simulate(self):
         """ simulate the cohort of patients over the specified number of time-steps
@@ -941,8 +577,11 @@ class YearofPatients:
         # return the cohort outputs
         return YearofPatientsOutputs(self)
 
-    def get_number_of_patients(self):
-        return self._initial_pop_size
+    def get_number_of_patients_pre(self):
+        return self._initial_pop_size_pre
+
+    def get_number_of_patients_post(self):
+        return self._initial_pop_size_post
 
     def get_patients(self):
         return self._patients
@@ -2188,7 +1827,7 @@ class YearofPatientsOutputs:
         return self._sumStat_con_w_NoOS_cost
 
     def get_sumStat_con_w_OS_utilities(self):
-        return self._sumStat_con_uw_OS_utilities
+        return self._sumStat_con_w_OS_utilities
 
     def get_sumStat_con_w_NoOS_utilities(self):
         return self._sumStat_con_w_NoOS_utilities
