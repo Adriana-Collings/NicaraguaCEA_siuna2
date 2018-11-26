@@ -13,14 +13,14 @@ import costs as Co
 # YLL & YLD -> DALY calculation
 K = 0               # modulates age weight inclusion (1 or 0)
 C = 0.1658          # mathematical constant
-r_YLL = 0.03             # discount rate (0%, 3%, or 6%)
-a_YLL = random.randint(5,75)                # age at death (randomize?)
+r_YLL = 0.0             # discount rate (0%, 3%, or 6%)
 b = 0.04            # parameter from age weighting function (0.04)
 e = 2.72            # natural logarithm root (2.72)
 L_YLL = 75              # life expectancy
 
-r_YLD = 0.03            # discount rate (0%, 3%, or 6%)
+r_YLD = 0.0            # discount rate (0%, 3%, or 6%)
 a_YLD = dist.Age_abdom_pelv             # age at ONSET (randomize?)
+a_YLL = random.randint(round(a_YLD, 0), 75)  # age at death
 L_YLD = a_YLL - a_YLD              # years lived with disability (randomize for condition or keep constant for country?)
 DW = DWpy.DW_abdom_pelv            # disability weight
 
@@ -57,7 +57,7 @@ PR_OS_NoSurgery = 1-PR_OS_Surgery
 PR_NoOS_Surgery = PR.injury_noos_s
 PR_NoOS_NoSurgery = 1-PR_NoOS_Surgery
 ########################################################################################################################
-DALY = (YLD_disease*DW)
+DALY = (YLD_disease)
 
 def get_DALY(self):
     return DALY
@@ -67,11 +67,11 @@ def get_DALY(self):
 # costs
 ########################################################################################################################
 #OpSmile
-OpSmile_C = Co.OpSmile_C                   # Cost of Operation Smile Project Implementation
+#OpSmile_C = Co.OpSmile_C                   # Cost of Operation Smile Project Implementation
 OS_Surgery_C = Co.OS_Surgery_C                   # Cost of Surgery with OpSmile
 OS_NoSurgery_C = Co.OS_NoSurgery_C              # Cost of No surgery with OpSmile
 #NoOpSmile
-NoOS_C = Co.NoOS_C                         # Cost of No Operation Smile Project Implementation
+#NoOS_C = Co.NoOS_C                         # Cost of No Operation Smile Project Implementation
 NoOS_Surgery_C = Co.NoOS_Surgery_C               # Cost of NoOpSmile Surgery
 NoOS_NoSurgery_C = Co.NoOS_NoSurgery_C               # Cost no surgery without OpSmile
 ########################################################################################################################

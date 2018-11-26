@@ -8,13 +8,17 @@ import DT as DTb
 from scipy.stats import expon
 from numpy.random import choice
 import random as random
+import costs as Co
 
+random.seed(1)
 
 class Patient:
     # ##run more than one patient through tree to find costs and utilities
     # run a patient
-    def __init__(self):
+    def __init__(self, id):
+        self._id = id
         self._rnd = np.random
+        self._rnd.seed(self._id)
         # counts
         self._count_OS_S = 0
         self._count_OS_NS = 0
@@ -22,37 +26,37 @@ class Patient:
         self._count_NoOS_NS = 0
         # count * cost/utility value
         self._S_OS_S = 0
-        self._S_OS_NS= 0
+        self._S_OS_NS = 0
         self._S_NoOS_S = 0
         self._S_NoOS_NS = 0
 
         self._total_OpSmile_costs = 0
         self._total_OpSmile_utilities = 0
         self._total_NoOpSmile_costs = 0
-        self._total_NoOpSmile_utilities =0
+        self._total_NoOpSmile_utilities = 0
 
         # dirichlet distribution:
         probs = np.random.dirichlet(alpha=(0.033, # 1
                                            0.061, # 2
-                                           0.056, # 3
+                                           #0.056, # 3
                                            0.003, # 4
                                           # 0.395, # 5
                                            0.009, # 6
-                                           0.003, # 8
-                                           0.003, # 10
+                                         #  0.003, # 8
+                                         #  0.003, # 10
                                            0.006, # 12
                                            0.008, # 13
                                            0.022, # 14
                                           # 0.015, # 16
-                                           0.003, # 17
+                                         #  0.003, # 17
                                           # 0.017, # 18
-                                           0.003, # 19
+                                         #  0.003, # 19
                                          #  0.003, # 20
                                          #  0.003, # 22
                                            0.067, # 24
-                                           0.003, # 25
+                                         #  0.003, # 25
                                            0.004, # 28
-                                           0.002, # 30
+                                         #  0.002, # 30
                                            0.027, # 32
                                           # 0.005, # 33
                                            0.009, # 34
@@ -64,26 +68,35 @@ class Patient:
                                           # 0.004, # 44
                                            0.048, # 45
                                           # 0.004, # 46
-                                           0.003, # 47
+                                         #  0.003, # 47
                                            0.011, # 48
-                                           0.005, # 49
+                                         #  0.005, # 49
                                            0.005, # 50
                                           # 0.004, # 51
                                            0.003, # 53
                                           # 0.02, # 54
-                                           0.004 # 59
+                                          # 0.004 # 59
                                            ), size=None)
         # the numbers of alpha determine the concentration of the probability for each option
-        conditions_list = ['a', 'b', 'c', 'd',
+        conditions_list = ['a', 'b',
+                           #'c',
+                           'd',
                            #'e',
-                           'f', 'g', 'h', 'i', 'j', 'k',
+                           'f',
+                           #'g',
+                           #'h',
+                           'i', 'j', 'k',
                            #'l',
-                           'm',
+                           #'m',
                            #'n',
-                           'o',
+                           #'o',
                            #'p',
                            # 'q',
-                           'r', 's', 't', 'u', 'v',
+                           'r',
+                           #'s',
+                           't',
+                           #'u',
+                           'v',
                            # 'w',
                            'x', 'y', 'z', 'aa',
                            # 'bb',
@@ -91,11 +104,15 @@ class Patient:
                            #'dd',
                            'ee',
                            #'ff',
-                           'gg', 'hh', 'ii', 'jj',
+                           #'gg',
+                           'hh',
+                           #'ii',
+                           'jj',
                            #'kk',
                            'll',
                            #'mm',
-                           'nn']  # list of conditions
+                           #'nn'
+                           ]  # list of conditions
 # what you are trying to do now is build a function in R that will tell you the concentration of each disease to input above
         self.draw = choice(a=conditions_list, p=probs)                  # drawing a random
 
@@ -104,18 +121,18 @@ class Patient:
             import DT_Condition_1 as D
         if self.draw == 'b':
             import DT_Condition_2 as D
-        if self.draw == 'c':
-            import DT_Condition_3 as D
+        #if self.draw == 'c':
+        #    import DT_Condition_3 as D
         if self.draw == 'd':
             import DT_Condition_4 as D
         #if self.draw == 'e':
         #    import _DT_Condition_5 as D
         if self.draw == 'f':
             import DT_Condition_6 as D
-        if self.draw == 'g':
-            import DT_Condition_8 as D
-        if self.draw == 'h':
-            import DT_Condition_10 as D
+        #if self.draw == 'g':
+        #    import DT_Condition_8 as D
+        #if self.draw == 'h':
+        #    import DT_Condition_10 as D
         if self.draw == 'i':
             import DT_Condition_12 as D
         if self.draw == 'j':
@@ -124,24 +141,24 @@ class Patient:
             import DT_Condition_14 as D
         #if self.draw == 'l':
         #    import _DT_Condition_16 as D
-        if self.draw == 'm':
-            import DT_Condition_17 as D
+        #if self.draw == 'm':
+        #    import DT_Condition_17 as D
         #if self.draw == 'n':
         #    import _DT_Condition_18 as D
-        if self.draw == 'o':
-            import DT_Condition_19 as D
+        #if self.draw == 'o':
+        #    import DT_Condition_19 as D
         #if self.draw =='p':
         #    import _DT_Condition_20 as D
         #if self.draw =='q':
         #    import _DT_Condition_22 as D
         if self.draw == 'r':
             import DT_Condition_24 as D
-        if self.draw == 's':
-            import DT_Condition_25 as D
+        #if self.draw == 's':
+        #    import DT_Condition_25 as D
         if self.draw =='t':
             import DT_Condition_28 as D
-        if self.draw == 'u':
-            import DT_Condition_30 as D
+        #if self.draw == 'u':
+        #    import DT_Condition_30 as D
         if self.draw == 'v':
             import DT_Condition_32 as D
         #if self.draw == 'w':
@@ -164,12 +181,12 @@ class Patient:
             import DT_Condition_45 as D
         #if self.draw == 'ff':
         #    import _DT_Condition_46 as D
-        if self.draw == 'gg':
-            import DT_Condition_47 as D
+        #if self.draw == 'gg':
+        #    import DT_Condition_47 as D
         if self.draw == 'hh':
             import DT_Condition_48 as D
-        if self.draw == 'ii':
-            import DT_Condition_49 as D
+        #if self.draw == 'ii':
+        #    import DT_Condition_49 as D
         if self.draw == 'jj':
             import DT_Condition_50 as D
         #if self.draw =='kk':
@@ -178,8 +195,8 @@ class Patient:
             import DT_Condition_53 as D
         #if self.draw == 'mm':
         #    import _DT_Condition_54 as D
-        if self.draw == 'nn':
-            import DT_Condition_59 as D
+        #if self.draw == 'nn':
+        #    import DT_Condition_59 as D
 
         t = 0
         z = 0
@@ -219,10 +236,10 @@ class Patient:
         self._total_NoOpSmile_utilities = self._S_NoOS_S_U + self._S_NoOS_NS_U
 
     def get_OS_cost(self):
-        return self._total_OpSmile_costs
+        return self._total_OpSmile_costs + Co.OpSmile_C
 
     def get_NoOS_cost(self):
-        return self._total_NoOpSmile_costs
+        return self._total_NoOpSmile_costs + Co.NoOS_C
 
     def get_OS_utility(self):
         return self._total_OpSmile_utilities
@@ -276,13 +293,13 @@ class YearofPatients:
         self._con_nn_patients = []
         # eventually we'll want to add other metrics here. Like how many died, etc.
 
-        self._initial_pop_size_pre= 100 #1451
-        self._initial_pop_size_post = 100 #2658
+        self._initial_pop_size_pre= 1451
+        self._initial_pop_size_post = 2658
         # fixed internally because we're going to make this number random eventually.
         # Maybe we'll change this later, but this should work for now.
 
         for i in range(self._initial_pop_size_pre):
-            patient = Patient()
+            patient = Patient(id=3)
             self._patients.append(patient)
             self.draw = patient.draw
             if self.draw == 'a':
@@ -367,7 +384,7 @@ class YearofPatients:
                 self._con_nn_patients.append(patient)
 
         for i in range(self._initial_pop_size_post):
-            patient = Patient()
+            patient = Patient(id=3)
             self._patients.append(patient)
             self.draw = patient.draw
             if self.draw == 'a':

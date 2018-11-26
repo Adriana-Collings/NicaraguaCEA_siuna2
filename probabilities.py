@@ -1,43 +1,43 @@
-skin_os_s = 0.018
-skin_noos_s = 0.014
+skin_os_s = 0.010
+skin_noos_s = 0.005
 
-injury_os_s = 0.056
-injury_noos_s = 0.038
+injury_os_s = 0.027
+injury_noos_s = 0.017
 
 # maternal obstructed labor?
 
-gyne_os_s = 0.010
-gyne_noos_s = 0.006
+gyne_os_s = 0.009
+gyne_noos_s = 0.001
 
-neo_os_s = 0.579
-neo_noos_s = 0.333
+neo_os_s = 0.134
+neo_noos_s = 0.579
 
 ############################################
 
-append_os_s = 0.545
-append_noos_s = 0.353
+append_os_s = 0.498
+append_noos_s = 0.259
 
-diab_os_s = 0.208
-diab_noos_s = 0.198
+diab_os_s = 0.106
+diab_noos_s = 0.026
 
-mathem_os_s = 0.070
-mathhem_noos_s = 0.028
+mathem_os_s = 0.053
+mathhem_noos_s = 0.009
 
-hernia_os_s = 0.383
-hernia_noos_s = 0.195
+hernia_os_s = 0.218
+hernia_noos_s = 0.104
 
-bph_os_s = 0.111
-bph_noos_s = 0.015
+bph_os_s = 0.142
+bph_noos_s = 0.019
 
-kidney_os_s = 0.061
-kidney_noos_s = 0.009
+kidney_os_s = 0.077
+kidney_noos_s = 0.007
 
-gall_os_s = 0.121
-gall_noos_s = 0.067
+gall_os_s = 0.124
+gall_noos_s = 0.049
 
-intest_os_s = 0.456
-intest_noos_s = 0.195
+intest_os_s = 0.537
+intest_noos_s = 0.207
 
-matabor_os_s = 0.016
-matabor_noos_s = 0.003
+matabor_os_s = 0.015
+matabor_noos_s = 0.000
 
