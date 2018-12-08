@@ -19,9 +19,9 @@ e = 2.72            # natural logarithm root (2.72)
 L_YLL = 75              # life expectancy
 
 r_YLD = 0.0            # discount rate (0%, 3%, or 6%)
-a_YLD = 55              # age at ONSET (randomize?)
+a_YLD = dist.Age_appen              # age at ONSET (randomize?)
 a_YLL = random.randint(round(a_YLD, 0), 75)  # age at death
-L_YLD = dist.Age_appen             # years lived with disability (randomize for condition or keep constant for country?)
+L_YLD = a_YLL - a_YLD             # years lived with disability (randomize for condition or keep constant for country?)
 DW = DWpy.DW_appen            # disability weight
 
 if r_YLL == 0:

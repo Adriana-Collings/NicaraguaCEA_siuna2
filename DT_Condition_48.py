@@ -8,6 +8,8 @@ import distributions as dist
 import probabilities as PR
 import costs as Co
 
+random.seed(1)
+
 # other injuries
 
 # YLL & YLD -> DALY calculation
@@ -98,3 +100,5 @@ dictTerminal_OS = {'OS_Surgery': [OS_Surgery_C, OS_Surgery_U],
 
 dictTerminal_NoOS = {'NoOS_Surgery': [NoOS_Surgery_C, NoOS_Surgery_U],
                    'NoOS_NoSurgery': [NoOS_NoSurgery_C, NoOS_NoSurgery_U]}
+
+print(DALY)
