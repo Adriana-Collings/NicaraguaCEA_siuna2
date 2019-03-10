@@ -37,25 +37,25 @@ class Patient:
 
         # dirichlet distribution:
         # dirichlet distribution:
-        probs = np.random.dirichlet(alpha=(0.047,  # 1
-                                           0.076,  # 2
-                                           0.010,  # 4
-                                           0.005,  # 6
-                                           0.006,  # 12
-                                           0.011,  # 13
-                                           0.015,  # 14
-                                           0.061,  # 24
+        probs = np.random.dirichlet(alpha=(0.050,  # 1
+                                           0.071,  # 2
+                                           0.008,  # 4
+                                           0.003,  # 6
+                                           0.004,  # 12
+                                           0.007,  # 13
+                                           0.011,  # 14
+                                           0.066,  # 24
                                            0.009,  # 28
-                                           0.016,  # 32
-                                           0.019,  # 34
-                                           0.025,  # 35
-                                           0.071,  # 37
-                                           0.007,  # 41
-                                           0.006,  # 43
-                                           0.030,  # 45
-                                           0.010,  # 48
-                                           0.007,  # 50
-                                           0.005,  # 53
+                                           0.013,  # 32
+                                           0.014,  # 34
+                                           0.020,  # 35
+                                           0.057,  # 37
+                                           0.005,  # 41
+                                           0.004,  # 43
+                                           0.032,  # 45
+                                           0.011,  # 48
+                                           0.005,  # 50
+                                           0.003,  # 53
                                            ), size=None)
         # the numbers of alpha determine the concentration of the probability for each option
         conditions_list = ['a', 'b',
@@ -273,7 +273,7 @@ class YearofPatients:
         self._con_nn_patients = []
         # eventually we'll want to add other metrics here. Like how many died, etc.
 
-        self._initial_pop_size_pre= 474
+        self._initial_pop_size_pre=  1513 #474
         self._initial_pop_size_post = 1513
         # fixed internally because we're going to make this number random eventually.
         # Maybe we'll change this later, but this should work for now.
